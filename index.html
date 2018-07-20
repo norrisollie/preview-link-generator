@@ -1,0 +1,70 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Preview Link Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="inner-container">
+            <div class="section" id="url">
+                <div class="title">Base URL</div>
+                <input type="text" id="base-url" value="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html">
+            </div>
+            <div class="section" id="json">
+                <div class="title">JSON Name</div>
+                <textarea id="json-name">120x600-summer-sale</textarea>
+            </div>
+            <div class="section" id="size">
+                <div class="title">Ad Sizes</div>
+                <div id="sizes-container">
+                    <label class="label-size">
+                        <input class="ad-size-checkbox" type="checkbox" name="ad-size" data-adsize="120x600" checked="true"> 120x600
+                    </label>
+                    <label class="label-size">
+                        <input class="ad-size-checkbox" type="checkbox" name="ad-size" data-adsize="160x600" checked="true"> 160x600
+                    </label>
+                    <label class="label-size">
+                        <input class="ad-size-checkbox" type="checkbox" name="ad-size" data-adsize="300x250" checked="true"> 300x250
+                    </label>
+                    <label class="label-size">
+                        <input class="ad-size-checkbox" type="checkbox" name="ad-size" data-adsize="300x600"> 300x600
+                    </label>
+                    <label class="label-size">
+                        <input class="ad-size-checkbox" type="checkbox" name="ad-size" data-adsize="320x50"> 320x50
+                    </label>
+                    <label class="label-size">
+                        <input class="ad-size-checkbox" type="checkbox" name="ad-size" data-adsize="728x90"> 728x90
+                    </label>
+                    <label class="label-size">
+                        <input class="ad-size-checkbox" type="checkbox" name="ad-size" data-adsize="970x250"> 970x250
+                    </label>
+                </div>
+                <div class="section" id="add-new-size">
+                    <div class="title" id="custom-size-title"><span>Add Custom Size</span><span>^</span></div>
+                    <div id="custom-size-container">
+                        <label class="custom-size-label">Width
+                            <input class="custom-size-input" id="custom-ad-size-height" type="text" name="width">px</label>
+                        <label class="custom-size-label">Height
+                            <input class="custom-size-input" id="custom-ad-size-width" type="text" name="width">px</label>
+                        <input id="add-new-size-button" type="button" value="Add New Size">
+                    </div>
+                    <div class="section" id="generate">
+                        <input id="generate-links-button" type="button" value="Generate!">
+                    </div>
+                </div>
+                <div class="section" id="output">
+                    <div class="title">Link Output</div>
+                    <textarea id="link-output"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js "></script>
+</body>
+
+</html>

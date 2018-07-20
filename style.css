@@ -1,0 +1,95 @@
+/* style.css */
+body {
+	padding: 0;
+	margin: 0;
+	font-size: 16px;
+	font-family: arial;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+#container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f0f0f0;
+}
+
+#inner-container {
+	width: 100%;
+	max-width: 600px;
+	background-color: #FFF;
+	padding: 20px;
+}
+
+.title {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+#custom-size-title {
+	display: flex;
+	justify-content: space-between;
+}
+
+.section {
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.section:last-child {
+	margin-bottom: 0;
+}
+
+#sizes-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	margin-bottom: 5px;
+}
+
+
+.custom-size-input {
+	width: 34px !important;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.label-size {
+	display: flex;
+}
+
+#custom-size-container {
+	/*display: none;*/
+}
+
+.custom-size-label {
+	margin-right: 20px;
+	font-weight: bold;
+	font-size: 10px;
+}
+
+#add-new-size-button {
+
+}
+
+input[type=text], textarea {
+	width: 100%;
+	padding: 10px;
+	font-size: 10px;
+	resize: none;
+	border: 1px solid lightgrey;
+}
+
+input[type=checkbox], textarea {
+	margin-right: 5px;
+}
+
+textarea {
+	height: 100px;
+}
