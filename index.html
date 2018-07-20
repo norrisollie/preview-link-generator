@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#link,
+#size,
+#output,
+#generate,
+#jsons {
+    padding: 10px;
+    width: 100%;
+    max-width: 500px;
+}
+
+#output-area {
+    height: 100px;
+}
+
+.input {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+}
+
+.title {
+    font-size: 16px;
+}
+
+.info {
+    font-size: 8px;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.new-size-input {
+    width: 50px;
+}
+</style>
+
+<body>
+    <div id="container">
+        <div id="link">
+            <form>
+                <div class="title">Base URL</div>
+                <input class="input" id="link-input" type="text" value="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html">
+            </form>
+        </div>
+        <div id="jsons">
+            <div class="title">JSON File Names</div>
+            <div class="info">Input area for the JSON file name. Separate individual names should be put on a new line or separated with a comma.</div>
+            <textarea id="json-input">120x600-summer-sale</textarea>
+        </div>
+        <div id="size">
+            <form id="size-input">
+                <div class="title">Ad Sizes</div>
+                <label>120x600</label>
+                <input data-size="120x600" class="size-inputs" type="checkbox" name="ad-size">
+                <label>160x600</label>
+                <input data-size="160x600" class="size-inputs" type="checkbox" name="ad-size">
+                <label>300x250</label>
+                <input data-size="300x250" class="size-inputs" type="checkbox" name="ad-size">
+                <label>300x600</label>
+                <input data-size="300x600" class="size-inputs" type="checkbox" name="ad-size">
+                <label>320x50</label>
+                <input data-size="320x50" class="size-inputs" type="checkbox" name="ad-size">
+                <label>728x90</label>
+                <input data-size="728x90" class="size-inputs" type="checkbox" name="ad-size">
+                <label>970x250</label>
+                <input data-size="970x250" class="size-inputs" type="checkbox" name="ad-size">
+                <!-- <label></label> -->
+                <input data-size="" class="size-inputs" type="button" name="" value="Add Custom Size" id="custom-size- btn">
+                <div id="new-size-options">
+                    <label>Width</label>
+                    <input type="text" name="width" id="new-size-width" class="new-size-input" placeholder="w" value="1">
+                    <label>Height</label>
+                    <input type="text" name="height" id="new-size-height" class="new-size-input" placeholder="w" value="1">
+                    <input type="button" name="submit" class="" value="create!" id="create-new-size-button">
+                </div>
+            </form>
+        </div>
+        <div id="generate">
+            <input id="generate-button" type="button" value="Generate!">
+        </div>
+        <div id="output">
+            <div class="title">Generated Links</div>
+            <textarea readonly id="output-area"></textarea>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- <script type="text/javascript" src="script.js"></script> -->
+<script>
+var linkInput = document.getElementById("link-input");
+var jsonInput = document.getElementById("json-input");
+var sizeInput = document.getElementById("size-input");
+var sizeInputs = document.querySelectorAll(".size-inputs");
+var button = document.getElementById("generate-button");
+var outputArea = document.getElementById("output-area")
+var outputAreaa = document.querySelectorAll("#output-area")
+var linkInputVal = linkInput.value
+var jsonInputVal = jsonInput.value
+var regex = /\d{1,3}[x]\d{1,3}/g;
+
+var newAdSizeButton = document.getElementById("create-new-size-button");
+var newAdSizeWidthInput = document.getElementById("new-size-width");
+var newAdSizeWidthInputs = document.querySelectorAll("#new-size-width");
+var newAdSizeHeightInput = document.getElementById("new-size-height");
+
+newAdSizeButton.addEventListener("click", function(e) {
+
+    var newAdSizeWidthVal = newAdSizeWidthInput.value;
+    var newAdSizeHeightVal = newAdSizeHeightInput.value;
+
+    console.log("click")
+
+    console.log(newAdSizeWidthInputs);
+    console.log(newAdSizeWidthVal)
+    console.log(newAdSizeHeightVal)
+
+    var newCheckboxLabel = document.createElement("label");
+    newCheckboxLabel.innerHTML = newAdSizeWidthVal + "x" + newAdSizeHeightVal;
+    sizeInput.appendChild(newCheckboxLabel)
+
+    var newCheckbox = document.createElement("input");
+    newCheckbox.setAttribute("data-size", newAdSizeWidthVal + "x" + newAdSizeHeightVal);
+    newCheckbox.setAttribute("class", "size-inputs");
+    newCheckbox.setAttribute("type", "checkbox");
+    newCheckbox.setAttribute("name", "ad-size");
+    sizeInput.appendChild(newCheckbox)
+
+
+
+    //<label>970x250</label>
+    //<input data-size="970x250" class="size-inputs" type="checkbox" name="ad-size">
+});
+
+// add event listener to the button and run function
+button.addEventListener("click", function(e) {
+
+    var checkboxCount = 0;
+    var sizesArr = [];
+    var linksArr = [];
+    var jsonsArr = [];
+
+    outputArea.value = ""
+
+
+    // iterate through all checkbox buttons
+    for (var i = 0; i < sizeInputs.length; i++) {
+
+        // if checkbox is checked...
+        if (sizeInputs[i].type == "checkbox" && sizeInputs[i].checked == true) {
+
+            // create variable for the checked ad size dataset
+            var selectedAdSizes = sizeInputs[i].dataset.size;
+
+            // push these sizes to an empty array
+            sizesArr.push(selectedAdSizes);
+            jsonsArr.push(jsonInputVal);
+
+            // increment counter to know how many links to push to the array
+            checkboxCount++;
+
+            // push linkInput value to an empty array
+            linksArr.push(linkInputVal);
+        }
+    }
+
+
+console.log(sizesArr)
+
+    for (var i = 0; i < sizesArr.length; i++) {
+
+        // log all the replaced links
+        var replacedLink = linksArr[i].replace(regex, sizesArr[i]);
+
+        var replacedJsonName = jsonsArr[i].replace(regex, sizesArr[i]);
+
+
+        outputArea.value += linksArr[i].replace(regex, sizesArr[i]) + "?" + replacedJsonName + "\n"
+    }
+
+
+
+});
+</script>
