@@ -45,9 +45,12 @@ function storeCustomAdSizes() {
 
 function addNewSize() {
 
+
     // create variables to store the width and height values entered in inputs
     var widthInputVal = app.dom.widthInput.value;
     var heightInputVal = app.dom.widthInput.value;
+
+    
 
     console.log(widthInputVal + "x" + heightInputVal);
 

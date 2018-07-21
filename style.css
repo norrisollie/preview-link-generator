@@ -55,7 +55,7 @@ body {
 
 
 .custom-size-input {
-	width: 34px !important;
+	width: 64px !important;
 	margin-left: 5px;
 	margin-right: 5px;
 }
@@ -78,12 +78,18 @@ body {
 
 }
 
-input[type=text], textarea {
+input[type=number], input[type=text], textarea {
 	width: 100%;
 	padding: 10px;
 	font-size: 10px;
 	resize: none;
 	border: 1px solid lightgrey;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 
 input[type=checkbox], textarea {
