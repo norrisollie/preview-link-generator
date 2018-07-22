@@ -32,6 +32,12 @@ body {
 	margin-bottom: 5px;
 }
 
+.subtitle {
+	font-size: 12px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
 #custom-size-title {
 	display: flex;
 	justify-content: space-between;
@@ -46,12 +52,14 @@ body {
 	margin-bottom: 0;
 }
 
-#sizes-container {
+#sizes-container, #custom-sizes-container {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 	margin-bottom: 5px;
 }
+
+
 
 
 .custom-size-input {
@@ -64,8 +72,11 @@ body {
 	display: flex;
 }
 
-#custom-size-container {
-	/*display: none;*/
+#add-custom-size-container {
+	display: none;
+	margin: 0 10px 0 10px;
+	background-color: lightgrey;
+	padding: 10px;
 }
 
 .custom-size-label {
@@ -76,6 +87,10 @@ body {
 
 #add-new-size-button {
 
+}
+
+#new-size-button-container {
+	display: flex;
 }
 
 input[type=number], input[type=text], textarea {

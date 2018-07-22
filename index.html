@@ -21,6 +21,7 @@
             </div>
             <div class="section" id="size">
                 <div class="title">Ad Sizes</div>
+                <div class="subtitle">Generic Sizes</div>
                 <div id="sizes-container">
                     <label class="label-size">
                         <input class="ad-size-checkbox" type="checkbox" name="ad-size" data-adsize="120x600" checked="true"> 120x600
@@ -44,16 +45,24 @@
                         <input class="ad-size-checkbox" type="checkbox" name="ad-size" data-adsize="970x250"> 970x250
                     </label>
                 </div>
+                <div class="subtitle">Custom Sizes</div>
+                <div id="custom-sizes-container">
+
+                </div>
                 <div class="section" id="add-new-size">
-                    <div class="title" id="custom-size-title"><span>Add Custom Size</span><span>^</span></div>
-                    <div id="custom-size-container">
+                    <div id="new-size-button-container">
+                        <input type="button" id="custom-size-title" value="Add Custom Size">
+                        <input type="button" id="clear-custom-sizes" value="Remove Custom Sizes">
+                    </div>
+                    <div id="add-custom-size-container">
                         <label class="custom-size-label">Width
-                            <input class="custom-size-input" id="custom-ad-size-height" type="number" name="width">px</label>
-                        <label class="custom-size-label">Height
                             <input class="custom-size-input" id="custom-ad-size-width" type="number" name="width">px</label>
+                        <label class="custom-size-label">Height
+                            <input class="custom-size-input" id="custom-ad-size-height" type="number" name="width">px</label>
                         <input id="add-new-size-button" type="button" value="Add New Size">
                     </div>
                 </div>
+            </div>
                 <div class="section" id="generate">
                     <input id="generate-links-button" type="button" value="Generate!">
                 </div>

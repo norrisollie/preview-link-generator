@@ -5,12 +5,15 @@ function setupDom() {
     app.dom = {};
 
     app.dom.customSizeTitle = document.getElementById("custom-size-title");
-    app.dom.customSizeContainer = document.getElementById("custom-size-container");
+
+    app.dom.customSizesContainer = document.getElementById("custom-sizes-container");
+    app.dom.addCustomSizeContainer = document.getElementById("add-custom-size-container");
     app.dom.generateLinksButton = document.getElementById("generate-links-button");
     app.dom.baseUrlInput = document.getElementById("base-url");
     app.dom.jsonNameInput = document.getElementById("json-name");
     app.dom.adSizeCheckboxes = document.querySelectorAll(".ad-size-checkbox");
     app.dom.adSizeLabels = document.querySelectorAll(".label-size");
+    app.dom.customLabels = document.querySelectorAll(".custom-label");
     app.dom.linkOutput = document.getElementById("link-output");
     app.dom.widthInput = document.getElementById("custom-ad-size-width");
     app.dom.heightInput = document.getElementById("custom-ad-size-height");
@@ -21,65 +24,129 @@ function setupDom() {
 
 function addListeners(argument) {
     app.dom.customSizeTitle.addEventListener("click", toggleCustomSize);
-    app.dom.generateLinksButton.addEventListener("click", generateLinks);
-    app.dom.addNewSizeButton.addEventListener("click", addNewSize);
+    app.dom.generateLinksButton.addEventListener("click", verifyJsons);
+    app.dom.addNewSizeButton.addEventListener("click", verifyCustomSize);
 }
 
-function storeCustomAdSizes() {
+function verifyJsons() {
 
-    // refresh the dom to make sure all new ad sizes are store
+    var jsonArr = [];
+
+    var jsonNameInputVal = app.dom.jsonNameInput.value
+
+    // var sanitiseInputVal = jsonNameInputVal.replace("\n", ",");
+
+    var replaceJsonVal = jsonNameInputVal.replace(",", "\n");
+    var splitJsonVal = replaceJsonVal.split("\n")
+
+
+    for(var i = 0; i < splitJsonVal.length; i++) {
+        jsonArr.push(splitJsonVal[i])
+    }
+
+    var numberOfJsons = jsonArr.length;
+
+    generateLinks(numberOfJsons)
+
+}
+
+function verifyCustomSize() {
+
     setupDom();
 
-    // create new array to store all of the ad size elements
-    var sizesArr = [];
-
-    // loop thriugh all of the elements and push them to the array
-    for(var i = 0; i < app.dom.adSizeLabels.length; i++) {
-        sizesArr.push(app.dom.adSizeLabels[i].outerHTML);
-    }   
-
-    // add the array to localstorage, you need to stringify the array as local storage only supports strings
-    localStorage.setItem("adSizes", JSON.stringify(sizesArr));
-
-}
-
-function addNewSize() {
-
-
-    // create variables to store the width and height values entered in inputs
     var widthInputVal = app.dom.widthInput.value;
-    var heightInputVal = app.dom.widthInput.value;
+    var heightInputVal = app.dom.heightInput.value;
+    var newAdSize = widthInputVal + "x" + heightInputVal;
 
-    
+    var testArr = [];
 
-    console.log(widthInputVal + "x" + heightInputVal);
+    for (var i = 0; i < app.dom.adSizeCheckboxes.length; i++) {
 
-    // create a new label element
-    var newLabel = document.createElement("label");
+        var adSizeDataset = app.dom.adSizeCheckboxes[i].dataset.adsize;
 
-    // add class
-    newLabel.classList.add("label-size");
+        testArr.push(adSizeDataset);
 
-    // create new input
-    var newInput = document.createElement("input");
+    }
 
-    // add the attributes and class
-    newInput.classList.add("ad-size-checkbox");
-    newInput.setAttribute("type", "checkbox");
-    newInput.setAttribute("name", "ad-size");
-    newInput.setAttribute("data-adsize", widthInputVal + "x" + heightInputVal);
-
-    newLabel.appendChild(newInput)
-    newLabel.innerHTML += widthInputVal + "x" + heightInputVal;
-
-    // append input in label
-    app.dom.sizesContainer.appendChild(newLabel);
-
-    setupDom();
-    storeCustomAdSizes();
+    if (testArr.indexOf(newAdSize) > -1) {
+        console.log("There is a matching size!");
+    } else {
+        console.log("There is not a matching size!");
+        addNewSize(widthInputVal, heightInputVal)
+    }
 }
 
-function generateLinks() {
+function addNewSize(adWidth, adHeight) {
+
+    if (adWidth > 0 && adHeight > 0) {
+
+        console.log("width: " + adWidth)
+        console.log("height: " + adHeight)
+
+        console.log(adWidth + "x" + adHeight);
+
+        // create a new label element
+        var newLabel = document.createElement("label");
+
+        // add class
+        newLabel.classList.add("label-size");
+        newLabel.classList.add("custom-label");
+
+        // create new input
+        var newInput = document.createElement("input");
+
+        // add the attributes and class
+        newInput.classList.add("ad-size-checkbox");
+        newInput.setAttribute("type", "checkbox");
+        newInput.setAttribute("name", "ad-size");
+        newInput.setAttribute("data-adsize", adWidth + "x" + adHeight);
+
+        newLabel.appendChild(newInput)
+        newLabel.innerHTML += adWidth + "x" + adHeight;
+
+        // append input in label
+        app.dom.customSizesContainer.appendChild(newLabel);
+
+        setupDom();
+        saveCustomAdSize();
+    }
+
+    function saveCustomAdSize() {
+
+        setupDom();
+
+        var sizesArr = [];
+
+        // loop thriugh all of the elements and push them to the array
+        for (var i = 0; i < app.dom.customLabels.length; i++) {
+            sizesArr.push(app.dom.customLabels[i].outerHTML);
+        }
+
+        // add the array to localstorage, you need to stringify the array as local storage only supports strings
+        localStorage.setItem("adSizes", JSON.stringify(sizesArr));
+    }
+
+}
+
+function setCustomSizes() {
+
+    // set the key as a variable
+    var storedAdSizes = localStorage.getItem("adSizes");
+
+    // parse the string back to HTML
+    var parsedAdSizes = JSON.parse(storedAdSizes);
+
+    // loop through the array and add the elements to the container
+    for (var i = 0; i < parsedAdSizes.length; i++) {
+        app.dom.customSizesContainer.innerHTML += parsedAdSizes[i];
+    }
+}
+
+function generateLinks(numberOfJsons) {
+
+    setupDom();
+
+    verifyJsons();
 
     var checkedSizesArr = [];
     var linksArr = [];
@@ -99,6 +166,8 @@ function generateLinks() {
     for (var i = 0; i < app.dom.adSizeCheckboxes.length; i++) {
 
         if (app.dom.adSizeCheckboxes[i].checked == true) {
+
+        console.log(app.dom.adSizeCheckboxes[i])
 
             // get the size dataset
             var adSizeDatasets = app.dom.adSizeCheckboxes[i].dataset.adsize;
@@ -123,39 +192,23 @@ function toggleCustomSize(e) {
 
     e.stopPropagation();
 
-    if (app.dom.customSizeContainer.classList.contains("active")) {
-        app.dom.customSizeContainer.style.display = "none";
-        app.dom.customSizeContainer.classList.remove("active");
+    if (app.dom.customSizeTitle.classList.contains("active")) {
+        app.dom.addCustomSizeContainer.style.display = "none";
+        app.dom.customSizeTitle.classList.remove("active");
     } else {
-        app.dom.customSizeContainer.style.display = "block";
-        app.dom.customSizeContainer.classList.add("active");
+        app.dom.addCustomSizeContainer.style.display = "block";
+        app.dom.customSizeTitle.classList.add("active");
     }
 
 }
 
-function addCustomAdSizes() {
 
-    // clear the container with all the default sizes
-    app.dom.sizesContainer.innerHTML = "";
 
-    // set the key as a variable
-    var storedAdSizes = localStorage.getItem("adSizes");
-
-    // parse the string back to HTML
-    var parsedAdSizes = JSON.parse(storedAdSizes);
-
-    // loop through the array and add the elements to the container
-    for (var i = 0; i < parsedAdSizes.length; i++) {
-        app.dom.sizesContainer.innerHTML += parsedAdSizes[i];
-    }
-
-    storeCustomAdSizes();
-}
 
 function init() {
     setupDom();
     addListeners();
-    addCustomAdSizes();
+    setCustomSizes();
 }
 
 window.onload = init
