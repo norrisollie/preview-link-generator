@@ -144,48 +144,128 @@ function setCustomSizes() {
 
 function generateLinks(numberOfJsons) {
 
-    setupDom();
+    setupDom()
 
-    verifyJsons();
-
-    var checkedSizesArr = [];
     var linksArr = [];
-    var regex = /\d{1,3}[x]\d{1,3}/g;
+    var sizesArr = [];
 
-    // clear previous contents of output area
-    app.dom.linkOutput.value = "";
+    var numberChecked = 0;
 
-    // get value of the base url input
-    var baseUrlInputVal = app.dom.baseUrlInput.value;
-    var jsonNameInputVal = app.dom.jsonNameInput.value;
+    // loop through checkboxes to see how many are checked
+    for(var i = 0; i < app.dom.adSizeCheckboxes.length; i++) {
 
-    // console.log(baseUrlInputVal)
-    console.log(app.dom.adSizeCheckboxes)
+        if(app.dom.adSizeCheckboxes[i].checked == true) {
 
-    // check what checkboxes have been checked
-    for (var i = 0; i < app.dom.adSizeCheckboxes.length; i++) {
+            var checkedSizes = app.dom.adSizeCheckboxes[i].dataset.adsize;
 
-        if (app.dom.adSizeCheckboxes[i].checked == true) {
+            sizesArr.push(checkedSizes)
 
-        console.log(app.dom.adSizeCheckboxes[i])
+            numberChecked++
 
-            // get the size dataset
-            var adSizeDatasets = app.dom.adSizeCheckboxes[i].dataset.adsize;
-
-            // push the sizes to the array
-            checkedSizesArr.push(adSizeDatasets)
-
-            var fullLinkUrl = baseUrlInputVal + "?" + jsonNameInputVal
-
-            // push the base url to the array
-            var replacedFullLinkUrl = fullLinkUrl.replace(regex, adSizeDatasets);
-
-            // console.log(replacedFullLinkUrl)
-
-            app.dom.linkOutput.value += replacedFullLinkUrl + "\n";
+            console.log(checkedSizes)
 
         }
     }
+
+    // create number of links based on how many check boxes there are times the number of jsons
+    var numberOfLinks = numberChecked * numberOfJsons;
+
+    // get the base url
+    var baseUrlInputVal = app.dom.baseUrlInput.value;
+    var jsonNameInputVal = app.dom.jsonNameInput.value;
+    // loop to add the correct number of links based on the number checked and how many json names there are
+    for(var i = 0; i < numberOfLinks; i++) {
+
+        linksArr.push(baseUrlInputVal + "?");
+
+    }
+
+    for(var i = 0; i < linksArr.length; i++) {
+
+        console.log();
+
+    }
+
+    // regex used to find the size in link and json name
+    var regex = /\d{1,4}[x]\d{1,4}/g;
+
+    // for(var i = 0; i < linksArr.length; i++) {
+
+    //     linksArr[i] + 
+
+    // }
+
+    console.log(linksArr)
+
+
+
+
+    // console.log(baseUrlInputVal)
+    // console.log(numberOfJsons)
+
+    // console.log(linksArr)
+    // console.log(sizesArr)
+
+
+
+
+
+    // setupDom();
+    // // verifyJsons();
+
+    // var checkedSizesArr = [];
+    // var linksArr = [];
+
+
+    // // clear previous contents of output area
+    // app.dom.linkOutput.value = "";
+
+    // // get value of the base url input
+    // var baseUrlInputVal = app.dom.baseUrlInput.value;
+    // var jsonNameInputVal = app.dom.jsonNameInput.value;
+
+    // // console.log(baseUrlInputVal)
+    // console.log(app.dom.adSizeCheckboxes)
+
+    // for(var i = 0; i < app.dom.adSizeCheckboxes.length; i++) {
+
+    //     if (app.dom.adSizeCheckboxes[i].checked == true) {
+
+    //         linksArr.push(baseUrlInputVal)
+
+    //     }
+
+
+    // }
+
+    // var numberOfCheckedBoxes = app.dom.adSizeDataset
+
+    // // check what checkboxes have been checked
+    // for (var i = 0; i < app.dom.adSizeCheckboxes.length; i++) {
+
+    //     if (app.dom.adSizeCheckboxes[i].checked == true) {
+
+    //     console.log(app.dom.adSizeCheckboxes[i])
+
+    //         // get the size dataset
+    //         var adSizeDatasets = app.dom.adSizeCheckboxes[i].dataset.adsize;
+
+    //         // push the sizes to the array
+    //         checkedSizesArr.push(adSizeDatasets)
+
+    //         var fullLinkUrl = baseUrlInputVal + "?" + jsonNameInputVal
+
+    //         // push the base url to the array
+    //         var replacedFullLinkUrl = fullLinkUrl.replace(regex, adSizeDatasets);
+
+    //         // console.log(replacedFullLinkUrl)
+
+    //         app.dom.linkOutput.value += replacedFullLinkUrl + "\n";
+
+    //     }
+
+    // }
+    //     console.log(linksArr)
 }
 
 function toggleCustomSize(e) {
