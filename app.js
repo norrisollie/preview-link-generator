@@ -20,6 +20,8 @@ function setupDom() {
     app.dom.addNewSizeButton = document.getElementById("add-new-size-button");
     app.dom.sizesContainer = document.getElementById("sizes-container");
 
+    var jsonArr
+
 }
 
 function addListeners(argument) {
@@ -30,7 +32,7 @@ function addListeners(argument) {
 
 function verifyJsons() {
 
-    var jsonArr = [];
+    jsonArr = [];
 
     var jsonNameInputVal = app.dom.jsonNameInput.value
 
@@ -40,7 +42,7 @@ function verifyJsons() {
     var splitJsonVal = replaceJsonVal.split("\n")
 
 
-    for(var i = 0; i < splitJsonVal.length; i++) {
+    for (var i = 0; i < splitJsonVal.length; i++) {
         jsonArr.push(splitJsonVal[i])
     }
 
@@ -147,125 +149,51 @@ function generateLinks(numberOfJsons) {
     setupDom()
 
     var linksArr = [];
+    var linksAndJsonArr = [];
     var sizesArr = [];
+    var replacedArr = [];
 
     var numberChecked = 0;
 
-    // loop through checkboxes to see how many are checked
-    for(var i = 0; i < app.dom.adSizeCheckboxes.length; i++) {
+    var regex = /\d{1,4}[x]\d{1,4}/g;
 
-        if(app.dom.adSizeCheckboxes[i].checked == true) {
+    // loop through all checkboxes to see what is checked
+    for (var k = 0; k < app.dom.adSizeCheckboxes.length; k++) {
 
-            var checkedSizes = app.dom.adSizeCheckboxes[i].dataset.adsize;
-
-            sizesArr.push(checkedSizes)
+        if (app.dom.adSizeCheckboxes[k].checked === true) {
 
             numberChecked++
 
-            console.log(checkedSizes)
+            // store the size of the ad in a variable
+            var checkedSizes = app.dom.adSizeCheckboxes[k].dataset.adsize;
+
+            for (var i = 0; i < numberOfJsons; i++) {
+
+                sizesArr.push(checkedSizes)
+
+            }
+        }
+    }
+
+    for (var i = 0; i < numberChecked; i++) {
+
+        linksArr.push(app.dom.baseUrlInput.value);
+
+        for (var k = 0; k < jsonArr.length; k++) {
+
+            var fullURL = linksArr[i] + "?" + jsonArr[k];
+
+            linksAndJsonArr.push(fullURL)
 
         }
     }
 
-    // create number of links based on how many check boxes there are times the number of jsons
-    var numberOfLinks = numberChecked * numberOfJsons;
-
-    // get the base url
-    var baseUrlInputVal = app.dom.baseUrlInput.value;
-    var jsonNameInputVal = app.dom.jsonNameInput.value;
-    // loop to add the correct number of links based on the number checked and how many json names there are
-    for(var i = 0; i < numberOfLinks; i++) {
-
-        linksArr.push(baseUrlInputVal + "?");
-
+    for (var i = 0; i < sizesArr.length; i++) {
+        replacedArr.push(linksAndJsonArr[i].replace(regex, sizesArr[i]));
     }
 
-    for(var i = 0; i < linksArr.length; i++) {
+    console.log(replacedArr)
 
-        console.log();
-
-    }
-
-    // regex used to find the size in link and json name
-    var regex = /\d{1,4}[x]\d{1,4}/g;
-
-    // for(var i = 0; i < linksArr.length; i++) {
-
-    //     linksArr[i] + 
-
-    // }
-
-    console.log(linksArr)
-
-
-
-
-    // console.log(baseUrlInputVal)
-    // console.log(numberOfJsons)
-
-    // console.log(linksArr)
-    // console.log(sizesArr)
-
-
-
-
-
-    // setupDom();
-    // // verifyJsons();
-
-    // var checkedSizesArr = [];
-    // var linksArr = [];
-
-
-    // // clear previous contents of output area
-    // app.dom.linkOutput.value = "";
-
-    // // get value of the base url input
-    // var baseUrlInputVal = app.dom.baseUrlInput.value;
-    // var jsonNameInputVal = app.dom.jsonNameInput.value;
-
-    // // console.log(baseUrlInputVal)
-    // console.log(app.dom.adSizeCheckboxes)
-
-    // for(var i = 0; i < app.dom.adSizeCheckboxes.length; i++) {
-
-    //     if (app.dom.adSizeCheckboxes[i].checked == true) {
-
-    //         linksArr.push(baseUrlInputVal)
-
-    //     }
-
-
-    // }
-
-    // var numberOfCheckedBoxes = app.dom.adSizeDataset
-
-    // // check what checkboxes have been checked
-    // for (var i = 0; i < app.dom.adSizeCheckboxes.length; i++) {
-
-    //     if (app.dom.adSizeCheckboxes[i].checked == true) {
-
-    //     console.log(app.dom.adSizeCheckboxes[i])
-
-    //         // get the size dataset
-    //         var adSizeDatasets = app.dom.adSizeCheckboxes[i].dataset.adsize;
-
-    //         // push the sizes to the array
-    //         checkedSizesArr.push(adSizeDatasets)
-
-    //         var fullLinkUrl = baseUrlInputVal + "?" + jsonNameInputVal
-
-    //         // push the base url to the array
-    //         var replacedFullLinkUrl = fullLinkUrl.replace(regex, adSizeDatasets);
-
-    //         // console.log(replacedFullLinkUrl)
-
-    //         app.dom.linkOutput.value += replacedFullLinkUrl + "\n";
-
-    //     }
-
-    // }
-    //     console.log(linksArr)
 }
 
 function toggleCustomSize(e) {
