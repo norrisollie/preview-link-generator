@@ -194,6 +194,13 @@ function generateLinks(numberOfJsons) {
 
     console.log(replacedArr)
 
+    for(var i = 0; i < replacedArr.length; i++) {
+
+        app.dom.linkOutput.value += replacedArr[i] + "\n";
+
+
+    }
+
 }
 
 function toggleCustomSize(e) {
