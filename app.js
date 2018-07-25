@@ -19,6 +19,7 @@ function setupDom() {
     app.dom.heightInput = document.getElementById("custom-ad-size-height");
     app.dom.addNewSizeButton = document.getElementById("add-new-size-button");
     app.dom.sizesContainer = document.getElementById("sizes-container");
+    app.dom.devModeCheckbox = document.getElementById("dev-mode-checkbox")
 
     var jsonArr
 
@@ -181,9 +182,18 @@ function generateLinks(numberOfJsons) {
 
         for (var k = 0; k < jsonArr.length; k++) {
 
+            if(app.dom.devModeCheckbox.checked === true) {
+
+            var fullURL = linksArr[i] + "?devmode=" + jsonArr[k] + ".json";
+
+            linksAndJsonArr.push(fullURL)
+
+            } else {
+
             var fullURL = linksArr[i] + "?" + jsonArr[k];
 
             linksAndJsonArr.push(fullURL)
+        }
 
         }
     }
