@@ -149,6 +149,8 @@ function generateLinks(numberOfJsons) {
 
     setupDom()
 
+    app.dom.linkOutput.value = "";
+
     var linksArr = [];
     var linksAndJsonArr = [];
     var sizesArr = [];
