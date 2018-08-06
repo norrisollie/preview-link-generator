@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Preview Link Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="floating-container">
+        <div id="floating-inner">
+            <div class="section" id="add-size">
+                <div class="title">Add Custom Size</div>
+                <div class="section-content">
+                    <div class="floating-inner-content">
+                        <div class="inner">
+                            <span class="info">Enter the width and height to add a size</span>
+                        </div>
+                        <div class="inner">
+                            <label class="custom-size-label">Width
+                                <input class="add-size-input" id="custom-ad-size-width" type="number" name="width">px</label>
+                            <label class="custom-size-label">Height
+                                <input class="add-size-input" id="custom-ad-size-height" type="number" name="width">px</label>
+                        </div>
+                    </div>
+                    <div class="inner-content">
+                        <input id="add-size-confirm" type="button" value="Add Size" data-action="add">
+                        <input id="add-size-cancel" type="button" value="Cancel" data-action="close">
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="remove-size">
+                <div class="title">Remove Custom Size</div>
+                <div class="section-content">
+                    <div class="inner-content">
+                        <div class="inner">
+                            <span class="info">Enter the width and height to remove a size</span>
+                        </div>
+                        <div class="inner">
+                            <label class="custom-size-label">Width
+                                <input class="add-size-input" id="custom-ad-size-width" type="number" name="width">px</label>
+                            <label class="custom-size-label">Height
+                                <input class="add-size-input" id="custom-ad-size-height" type="number" name="width">px</label>
+                        </div>
+                    </div>
+                    <div class="inner-content">
+                        <input id="remove-size-confirm" type="button" value="Remove Size" data-action="remove">
+                        <input id="remove-size-cancel" type="button" value="Cancel" data-action="close">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <div id="inner-container">
+            <div class="section" id="url">
+                <div class="title">Base URL</div>
+                <div class="section-content">
+                    <input class="text-input" type="text" id="url-input" value="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html">
+                </div>
+            </div>
+            <div class="section" id="json">
+                <div class="title">JSON File Names</div>
+                <div class="section-content">
+                    <textarea class="textarea" id="json-input">120x600--test-json, 120x600--test-json-2</textarea>
+                </div>
+            </div>
+            <div class="section" id="options">
+                <div class="title">Ad Options</div>
+                <div class="section-content">
+                    <label class="size-label">
+                        <input class="checkbox-input" id="devmode-checkbox" type="checkbox">Dev Mode</label>
+                </div>
+            </div>
+            <div class="section" id="ad-sizes">
+                <div class="title">Ad Sizes</div>
+                <div class="section-content">
+                    <div class="inner-content">
+                        <div class="subtitle">Generic Sizes</div>
+                        <label class="size-label">
+                            <input class="adsize-checkbox checkbox-input" type="checkbox" checked="true" data-adsize="120x600">120x600</label>
+                        <label class="size-label">
+                            <input class="adsize-checkbox checkbox-input" type="checkbox" checked="true" data-adsize="160x600">160x600</label>
+                        <label class="size-label">
+                            <input class="adsize-checkbox checkbox-input" type="checkbox" data-adsize="300x250">300x250</label>
+                        <label class="size-label">
+                            <input class="adsize-checkbox checkbox-input" type="checkbox" data-adsize="300x600">300x600</label>
+                        <label class="size-label">
+                            <input class="adsize-checkbox checkbox-input" type="checkbox" data-adsize="728x90">728x90</label>
+                        <label class="size-label">
+                            <input class="adsize-checkbox checkbox-input" type="checkbox" data-adsize="970x250">970x250</label>
+                    </div>
+                    <div class="inner-content">
+                        <div class="subtitle">Custom Sizes</div>
+                        <div id="custom-adsize-container">
+                            <span class="info">No custom sizes have been added</span>
+                        </div>
+                    </div>
+                    <div class="inner-content" id="custom-sizes-options">
+                        <div class="subtitle">Add Custom Size</div>
+                        <input type="button" id="add-custom-size-button" value="Add Size" data-action="add">
+                        <input type="button" id="remove-custom-size-button" value="Remove Size" data-action="remove">
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="generate">
+                <div class="section-content">
+                    <input class="button-input" id="generate-links-button" type="button" value="Generate!">
+                </div>
+            </div>
+            <div class="section" id="output">
+                <div class="title">Link Output</div>
+                <div class="section-content">
+                    <textarea class="textarea" id="link-output"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js "></script>
+</body>
+
+</html>

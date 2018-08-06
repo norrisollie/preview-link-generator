@@ -1,0 +1,151 @@
+/* style.css */
+
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-family: arial;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#floating-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+#floating-inner {
+    width: 100%;
+    max-width: 600px;
+    background-color: #FFF;
+    transform: translateY(-50px);
+    transition: all 0.5s ease;
+    padding: 20px;
+}
+
+#add-new-size-button-container {
+    display: flex;
+}
+
+#add-size {
+    display: none;
+}
+
+#remove-size {
+    display: none;
+}
+
+.add-size-input {
+    width: 75px;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    margin: 0 5px;
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    background: lightgrey;
+}
+
+#inner-container {
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    background-color: #FFF;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+}
+
+.section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#floating-inner>.section {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.floating-inner-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.inner {
+    margin-bottom: 5px;
+}
+
+
+.section-content {
+    margin: 0 10px 0 10px;
+}
+
+.inner-content {
+    margin: 5px 0;
+}
+
+
+
+.text-input {
+    width: 100%;
+    border: 1px solid lightgrey;
+    padding: 10px;
+}
+
+.textarea {
+    width: 100%;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    height: 100px;
+}
+
+.title,
+.subtitle {
+    font-weight: bold;
+}
+
+.title {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.subtitle,
+.info,
+.size-label,
+.custom-label {
+    font-size: 12px;
+}
+
+.info {
+    font-style: italic;
+}
+
+
+
+
+
+#sizes-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
