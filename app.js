@@ -4,13 +4,9 @@ function init() {
 
     console.log("init is running");
 
-    // setup dom
-    setupDom()
-
-    // add event listeners
-    addListeners();
-
+    setupDom();
     setCustomSizes();
+    addListeners();
 
 }
 
@@ -30,9 +26,11 @@ function setupDom() {
     app.dom.removeCustomSizeButton = document.getElementById("remove-custom-size-button");
     app.dom.generateLinksButton = document.getElementById("generate-links-button");
     app.dom.linkOutput = document.getElementById("link-output");
+    app.dom.noCustomSizesMsg = document.getElementById("no-custom-sizes");
 
     // classes/multiple elements
     app.dom.adSizeCheckboxes = document.querySelectorAll(".adsize-checkbox");
+    app.dom.customLabels = document.querySelectorAll(".custom-label");
     app.dom.customAdSizeCheckboxes
 
     // floating container
@@ -46,10 +44,16 @@ function setupDom() {
     app.dom.removeSizeConfirm = document.getElementById("remove-size-confirm");
     app.dom.removeSizeCancel = document.getElementById("remove-size-cancel");
 
-    app.dom.customLabels = document.querySelectorAll(".custom-label")
-
     var jsonArr
 
+    var storedAdSizes = localStorage.getItem("adSizes");
+    var parsedAdSizes = JSON.parse(storedAdSizes);
+
+    if (parsedAdSizes !== null && parsedAdSizes.length > 0) {
+        app.dom.noCustomSizesMsg.style.display = "none";
+    } else if (parsedAdSizes === null) {
+        app.dom.noCustomSizesMsg.style.display = "block";
+    }
 }
 
 function addListeners() {
@@ -78,7 +82,7 @@ function verifyJsons() {
     var splitJsonVal = jsonNameInputVal.split(",")
 
     for (var i = 0; i < splitJsonVal.length; i++) {
-        jsonArr.push(splitJsonVal[i].trim());
+        jsonArr.push(splitJsonVal[i].replace(".json", "").trim());
     }
 
     console.log(splitJsonVal)
@@ -175,11 +179,10 @@ function addRemoveCustomSize(e) {
         app.dom.removeSizeSection.style.display = "block";
 
     }
+
 }
 
 function floatingSectionHandler(e) {
-
-    // console.log("creating a new size");
 
     var actionDataset = e.currentTarget.dataset.action;
 
@@ -209,8 +212,6 @@ function floatingSectionHandler(e) {
 
 function verifyCustomSize() {
 
-    setupDom();
-
     var widthInputVal = app.dom.addSizeWidthInput.value;
     var heightInputVal = app.dom.addSizeHeightInput.value;
     var newAdSize = widthInputVal + "x" + heightInputVal;
@@ -231,6 +232,8 @@ function verifyCustomSize() {
         console.log("There is not a matching size!");
         addNewSize(widthInputVal, heightInputVal)
     }
+
+    setupDom();
 }
 
 function addNewSize(adWidth, adHeight) {
@@ -261,11 +264,11 @@ function addNewSize(adWidth, adHeight) {
         newLabel.appendChild(newInput)
         newLabel.innerHTML += adWidth + "x" + adHeight;
 
-        // append input in label
         app.dom.customAdSizeContainer.appendChild(newLabel);
 
-        setupDom();
         saveCustomAdSize();
+        setupDom();
+
     }
 
     function saveCustomAdSize() {
@@ -287,15 +290,20 @@ function addNewSize(adWidth, adHeight) {
 
 function setCustomSizes() {
 
+    setupDom();
+
     // set the key as a variable
     var storedAdSizes = localStorage.getItem("adSizes");
 
     // parse the string back to HTML
     var parsedAdSizes = JSON.parse(storedAdSizes);
 
-    // loop through the array and add the elements to the container
-    for (var i = 0; i < parsedAdSizes.length; i++) {
-        app.dom.customAdSizeContainer.innerHTML += parsedAdSizes[i];
+    if (parsedAdSizes !== null) {
+
+        // loop through the array and add the elements to the container
+        for (var i = 0; i < parsedAdSizes.length; i++) {
+            app.dom.customAdSizeContainer.innerHTML += parsedAdSizes[i];
+        }
     }
 
 }
