@@ -43,6 +43,8 @@ function setupDom() {
     app.dom.addSizeHeightInput = document.getElementById("custom-ad-size-height");
     app.dom.removeSizeConfirm = document.getElementById("remove-size-confirm");
     app.dom.removeSizeCancel = document.getElementById("remove-size-cancel");
+    app.dom.removeSizeWidthInput = document.getElementById("remove-custom-ad-size-width");
+    app.dom.removeSizeHeightInput = document.getElementById("remove-custom-ad-size-height");
 
     var jsonArr
 
@@ -68,6 +70,7 @@ function addListeners() {
     app.dom.removeSizeConfirm.addEventListener("click", floatingSectionHandler)
     app.dom.removeSizeCancel.addEventListener("click", floatingSectionHandler)
     app.dom.addSizeConfirm.addEventListener("click", verifyCustomSize)
+    app.dom.removeSizeConfirm.addEventListener("click", removeCustomSize)
 
 
 }
@@ -285,6 +288,42 @@ function addNewSize(adWidth, adHeight) {
         // add the array to localstorage, you need to stringify the array as local storage only supports strings
         localStorage.setItem("adSizes", JSON.stringify(sizesArr));
     }
+
+}
+
+function removeCustomSize() {
+
+    var removeSizeInputWidthValue = app.dom.removeSizeWidthInput.value
+    var removeSizeInputHeightValue = app.dom.removeSizeHeightInput.value
+
+    var adWidthHeight = removeSizeInputWidthValue + "x" + removeSizeInputHeightValue;
+
+    var count = -1;
+
+    // set the key as a variable
+    var storedAdSizes = localStorage.getItem("adSizes");
+
+    // parse the string back to HTML
+    var parsedAdSizes = JSON.parse(storedAdSizes);
+
+    console.log(parsedAdSizes)
+
+    for (var i = 0; i < parsedAdSizes.length; i++) {
+
+        if (parsedAdSizes[i].indexOf(adWidthHeight) >= 0) {
+
+            count++
+
+        } else {
+            console.log("no match");
+        }
+    }
+    console.log(count)
+
+    parsedAdSizes.splice(count, 1)
+    localStorage.setItem("adSizes", JSON.stringify(parsedAdSizes));
+    setupDom();
+    setCustomSizes();
 
 }
 
