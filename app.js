@@ -82,14 +82,14 @@ function verifyJsons() {
     jsonArr = [];
 
     var jsonNameInputVal = app.dom.jsonInput.value;
-    var splitJsonVal = jsonNameInputVal.split(",")
-    var splitNewLineJsonVal = jsonNameInputVal.split("\n");
+    var splitRegex = /[\n,]/;
+    var splitJsonVal = jsonNameInputVal.split(splitRegex);
 
-    for (var i = 0; i < splitNewLineJsonVal.length; i++) {
-        jsonArr.push(splitNewLineJsonVal[i].replace(".json", "").trim());
+    for (var i = 0; i < splitJsonVal.length; i++) {
+        jsonArr.push(splitJsonVal[i].replace(".json", "").trim());
     }
 
-    console.log(splitNewLineJsonVal)
+    console.log(splitJsonVal)
 
     var numberOfJsons = jsonArr.length;
 
