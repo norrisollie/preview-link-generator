@@ -27,6 +27,7 @@ function setupDom() {
     app.dom.generateLinksButton = document.getElementById("generate-links-button");
     app.dom.linkOutput = document.getElementById("link-output");
     app.dom.noCustomSizesMsg = document.getElementById("no-custom-sizes");
+    app.dom.container = document.getElementById("container");
 
     // classes/multiple elements
     app.dom.adSizeCheckboxes = document.querySelectorAll(".adsize-checkbox");
@@ -172,7 +173,7 @@ function addRemoveCustomSize(e) {
 
     app.dom.floatingContainer.style.pointerEvents = "all";
     app.dom.floatingContainer.style.opacity = 1;
-    // app.dom.floatingInner.style.transform = "none";
+    app.dom.container.style.overflow = "hidden";
 
     if (addRemoveDataset === "add") {
 
@@ -189,7 +190,7 @@ function addRemoveCustomSize(e) {
 function floatingSectionHandler(e) {
 
     var actionDataset = e.currentTarget.dataset.action;
-
+    app.dom.container.style.overflow = "visible";
     app.dom.floatingContainer.style.pointerEvents = "none";
     app.dom.floatingContainer.style.opacity = 0;
 
