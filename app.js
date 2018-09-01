@@ -46,6 +46,9 @@ function setupDom() {
     app.dom.removeSizeCancel = document.getElementById("remove-size-cancel");
     app.dom.removeSizeWidthInput = document.getElementById("remove-custom-ad-size-width");
     app.dom.removeSizeHeightInput = document.getElementById("remove-custom-ad-size-height");
+    app.dom.linkPreviewSection = document.getElementById("links-preview");
+    app.dom.linksContainer = document.getElementById("links-container");
+    app.dom.previewLinks = document.querySelectorAll(".preview-link");
 
     var jsonArr
 
@@ -68,10 +71,20 @@ function addListeners() {
     app.dom.removeCustomSizeButton.addEventListener("click", addRemoveCustomSize);
     app.dom.addSizeConfirm.addEventListener("click", floatingSectionHandler)
     app.dom.addSizeCancel.addEventListener("click", floatingSectionHandler)
+    app.dom.generateLinksButton.addEventListener("click", previewLinksHandler)
     app.dom.removeSizeConfirm.addEventListener("click", floatingSectionHandler)
     app.dom.removeSizeCancel.addEventListener("click", floatingSectionHandler)
     app.dom.addSizeConfirm.addEventListener("click", verifyCustomSize)
     app.dom.removeSizeConfirm.addEventListener("click", removeCustomSize)
+}
+
+function previewLinksClickHandler(e) {
+
+    var targetLink = e.currentTarget.dataset.link;
+
+    window.open(targetLink)
+    window.focus()
+
 
 
 }
@@ -95,6 +108,7 @@ function verifyJsons() {
     var numberOfJsons = jsonArr.length;
 
     generateLinks(numberOfJsons)
+
 }
 
 function generateLinks(numberOfJsons) {
@@ -109,6 +123,7 @@ function generateLinks(numberOfJsons) {
     var linksAndJsonArr = [];
     var sizesArr = [];
     var replacedArr = [];
+    var replacedNameArr = [];
 
     var numberChecked = 0;
     var regex = /\d{1,4}[x]\d{1,4}/g;
@@ -149,19 +164,28 @@ function generateLinks(numberOfJsons) {
 
                 linksAndJsonArr.push(fullURL)
             }
-
         }
     }
 
     for (var i = 0; i < sizesArr.length; i++) {
         replacedArr.push(linksAndJsonArr[i].replace(regex, sizesArr[i]));
+        replacedNameArr.push(linksAndJsonArr[i].replace(regex, sizesArr[i]).split("?"));
     }
 
-    console.log(replacedArr)
-
     for (var i = 0; i < replacedArr.length; i++) {
+        // app.dom.linksContainer.innerHTML += "<label><input type='checkbox' target='_blank' name='adlink'><a class='preview-link' href='" + replacedArr[i] +"'>" + replacedNameArr[i][1] + "</a></label><br>";
+        // app.dom.linksContainer.innerHTML += "<a class='preview-link' href='" + replacedArr[i] + "'>" + replacedNameArr[i][1] + "</a><br>";
 
-        app.dom.linkOutput.value += replacedArr[i] + "\n";
+        var link = document.createElement("div");
+        link.setAttribute("data-link", replacedArr[i]);
+        link.classList.add("preview-link");
+        link.innerHTML = replacedNameArr[i][1]
+        app.dom.linksContainer.appendChild(link)
+        link.addEventListener("click", previewLinksClickHandler);
+        // link.addEventListener("click", function(e) {
+            // console.log(e)
+        // });
+
     }
 }
 
@@ -185,6 +209,22 @@ function addRemoveCustomSize(e) {
 
     }
 
+}
+
+function previewLinksHandler(e) {
+
+    var actionDataset = e.currentTarget.dataset.action;
+
+    app.dom.floatingContainer.style.pointerEvents = "all";
+    app.dom.floatingContainer.style.opacity = 1;
+    app.dom.container.style.overflow = "hidden";
+
+
+    if (actionDataset === "previewlinks") {
+
+        app.dom.linkPreviewSection.style.display = "block";
+
+    }
 }
 
 function floatingSectionHandler(e) {

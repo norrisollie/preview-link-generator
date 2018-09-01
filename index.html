@@ -11,6 +11,18 @@
 <body>
     <div id="floating-container">
         <div id="floating-inner">
+            <div class="section" id="links-preview">
+                <div class="title">Link Preview</div>
+                <div class="section-content">
+                    <div class="floating-inner-content">
+                        <div class="inner">
+                            <span class="info">Click on the links to preview them. Hold the "CMD" key to open tabs in the background.</span>
+                        </div>
+                        <div class="inner" id="links-container"></div>
+                    </div>
+                    <div class="inner-content"></div>
+                </div>
+            </div>
             <div class="section" id="add-size">
                 <div class="title">Add Custom Size</div>
                 <div class="section-content">
@@ -58,13 +70,13 @@
             <div class="section" id="url">
                 <div class="title">Base URL</div>
                 <div class="section-content">
-                    <input class="text-input" type="text" id="url-input" placeholder="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html">
+                    <input class="text-input" type="text" id="url-input" value="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html">
                 </div>
             </div>
             <div class="section" id="json">
                 <div class="title">JSON File Names</div>
                 <div class="section-content">
-                    <textarea class="textarea" id="json-input" placeholder="120x600-expenses-60.json,120x600-expenses-generic.json,120x600-expenses-trial.json,120x600-get-paid-60.json,120x600-invoices-60.json,120x600-invoices-generic.json,120x600-invoices-trial.json,120x600-trial-60.json"></textarea>
+                    <textarea class="textarea" id="json-input">120x600-expenses-60.json,120x600-expenses-generic.json,120x600-expenses-trial.json,120x600-get-paid-60.json,120x600-invoices-60.json,120x600-invoices-generic.json,120x600-invoices-trial.json,120x600-trial-60.json</textarea>
                 </div>
             </div>
             <div class="section" id="options">
@@ -111,7 +123,7 @@
             </div>
             <div class="section" id="generate">
                 <div class="section-content">
-                    <input class="button-input" id="generate-links-button" type="button" value="Generate!">
+                    <input class="button-input" id="generate-links-button" data-action="previewlinks" type="button" value="Generate!">
                 </div>
             </div>
             <div class="section" id="output">
