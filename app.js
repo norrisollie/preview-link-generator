@@ -150,6 +150,8 @@ function copyPreviewLinks(e) {
                 app.dom.linksTextarea.value += copyLinksArray[i] + "\n"
             }
 
+            console.log(copyLinksArray)
+
 
 
             app.dom.linksTextarea.select();
@@ -270,6 +272,8 @@ function generateLinks(numberOfJsons) {
     }
 
     for (var i = 0; i < replacedArr.length; i++) {
+
+        app.dom.linksTextarea.value += replacedArr[i] + "\n"
 
         // app.dom.linksTextarea.innerHTML += replacedArr[i] + "\n"
 
