@@ -18,9 +18,20 @@
                         <div class="inner">
                             <span class="info">Click on the links to preview them. Hold the "CMD" key to open tabs in the background.</span>
                         </div>
+                        <div class="inner" id="links-options">
+                            
+                            <input type="button" id="preview-links-select-all" data-action="selectall" value="Select All">
+                            <input type="button" id="preview-links-deselect-all" data-action="deselectall" value="Deselect All">
+                            <input type="button" id="preview-links-open-selected" data-action="openselected" disabled="true" value="Open Selected">
+                            <input type="button" id="preview-links-copy-links" data-action="copylinks" value="Copy Links">
+                            <input type="text" id="preview-links-search" placeholder="Enter JSON name">
+                             <textarea id="links-textarea"></textarea>
+                        </div>
                         <div class="inner" id="links-container"></div>
+                        <div class="inner">
+                            <input id="close-preview" type="button" value="Cancel" data-action="close">
+                        </div>
                     </div>
-                    <div class="inner-content"></div>
                 </div>
             </div>
             <div class="section" id="add-size">
@@ -76,7 +87,7 @@
             <div class="section" id="json">
                 <div class="title">JSON File Names</div>
                 <div class="section-content">
-                    <textarea class="textarea" id="json-input">120x600-expenses-60.json,120x600-expenses-generic.json,120x600-expenses-trial.json,120x600-get-paid-60.json,120x600-invoices-60.json,120x600-invoices-generic.json,120x600-invoices-trial.json,120x600-trial-60.json</textarea>
+                    <textarea class="textarea" id="json-input">120x600-summer-sale, 120x600-summer-sale-extended</textarea>
                 </div>
             </div>
             <div class="section" id="options">

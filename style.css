@@ -34,6 +34,22 @@ body {
     /*overflow: scroll;*/
 }
 
+.preview-link-label {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgrey;
+    padding: 5px 0;
+}
+
+.preview-link-label:hover {
+    background-color: #f8f8f8;
+}
+
+.preview-link-checkbox {
+    margin: 0 10px;
+
+}
+
 /*    position: absolute;
     top: 0;
     left: 0;
@@ -79,6 +95,10 @@ body {
 .preview-link {
     margin: 2px 0;
     color: blue;
+}
+
+#links-textarea {
+
 }
 
 .preview-link:hover {

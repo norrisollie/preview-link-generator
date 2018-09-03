@@ -49,6 +49,14 @@ function setupDom() {
     app.dom.linkPreviewSection = document.getElementById("links-preview");
     app.dom.linksContainer = document.getElementById("links-container");
     app.dom.previewLinks = document.querySelectorAll(".preview-link");
+    app.dom.previewLinksSelectAll = document.getElementById("preview-links-select-all");
+    app.dom.previewLinksDeselectAll = document.getElementById("preview-links-deselect-all");
+    app.dom.previewLinksOpenSelected = document.getElementById("preview-links-open-selected");
+    app.dom.previewLinksSearch = document.getElementById("preview-links-search");
+    app.dom.previewLinksCheckboxes = document.querySelectorAll(".preview-link-checkbox")
+    app.dom.previewLinksCancel = document.getElementById("close-preview")
+    app.dom.previewLinksCopy = document.getElementById("preview-links-copy-links");
+    app.dom.linksTextarea = document.getElementById("links-textarea");
 
     var jsonArr
 
@@ -71,11 +79,17 @@ function addListeners() {
     app.dom.removeCustomSizeButton.addEventListener("click", addRemoveCustomSize);
     app.dom.addSizeConfirm.addEventListener("click", floatingSectionHandler)
     app.dom.addSizeCancel.addEventListener("click", floatingSectionHandler)
+    app.dom.previewLinksCancel.addEventListener("click", floatingSectionHandler)
     app.dom.generateLinksButton.addEventListener("click", previewLinksHandler)
     app.dom.removeSizeConfirm.addEventListener("click", floatingSectionHandler)
     app.dom.removeSizeCancel.addEventListener("click", floatingSectionHandler)
     app.dom.addSizeConfirm.addEventListener("click", verifyCustomSize)
     app.dom.removeSizeConfirm.addEventListener("click", removeCustomSize)
+    app.dom.previewLinksSelectAll.addEventListener("click", previewOptionsHandler)
+    app.dom.previewLinksDeselectAll.addEventListener("click", previewOptionsHandler)
+    app.dom.previewLinksOpenSelected.addEventListener("click", previewOptionsHandler)
+    app.dom.previewLinksSearch.addEventListener("input", previewLinkSearchHandler)
+    app.dom.previewLinksCopy.addEventListener("click", copyPreviewLinks)
 }
 
 function previewLinksClickHandler(e) {
@@ -83,10 +97,91 @@ function previewLinksClickHandler(e) {
     var targetLink = e.currentTarget.dataset.link;
 
     window.open(targetLink)
-    window.focus()
+    window.focus();
+
+}
+
+function previewLinkSearchHandler(e) {
+
+    setupDom();
+
+    for (var i = 0; i < app.dom.previewLinksCheckboxes.length; i++) {
+        app.dom.previewLinksCheckboxes[i].checked = false;
+    }
+
+    var filter = e.target.value;
+
+    console.log(app.dom.previewLinks)
+
+    for (var i = 0; i < app.dom.previewLinks.length; i++) {
+
+        if (app.dom.previewLinks[i].innerHTML.indexOf(filter) > -1) {
+            app.dom.previewLinks[i].parentNode.style.display = "flex";
+            app.dom.previewLinks[i].parentNode.childNodes[0].removeAttribute("disabled");
+        } else {
+            app.dom.previewLinks[i].parentNode.style.display = "none";
+            app.dom.previewLinks[i].parentNode.childNodes[0].setAttribute("disabled", "true");
+
+        }
+
+    }
+
+
+}
+
+function copyPreviewLinks(e) {
+
+    var copyLinksArray = [];
+
+    setupDom();
+
+    console.log("copy")
+
+    for (var i = 0; i < app.dom.previewLinksCheckboxes.length; i++) {
+
+        if (app.dom.previewLinksCheckboxes[i].checked === true) {
+
+            var copyText = app.dom.previewLinksCheckboxes[i].parentNode.childNodes[1].dataset.link;
+
+            copyLinksArray.push(copyText);
+
+            for(var i = 0; i < copyLinksArray.length; i++) {
+
+                app.dom.linksTextarea.value += copyLinksArray[i] + "\n"
+            }
 
 
 
+            app.dom.linksTextarea.select();
+
+            document.execCommand("copy")
+
+
+            // console.log(app.dom.previewLinksCheckboxes[i].parentNode.childNodes[1].dataset.link);
+
+
+
+            // var copyText = app.dom.previewLinksCheckboxes[i].parentNode.childNodes[1].dataset.link
+            // copyText.select();
+            // document.execCommand("copy");
+
+        }
+
+        console.log(app.dom.linksTextarea.value)
+    }
+
+    // var copyString = "";
+
+    // for(var i = 0; i < copyLinksArray.length; i++) {
+
+    //     copyString += copyLinksArray[i] + "\n"
+
+    // }
+
+    // copyText.select();
+    //         document.execCommand("copy");
+
+    // console.log(copyString)
 }
 
 function verifyJsons() {
@@ -116,6 +211,8 @@ function generateLinks(numberOfJsons) {
     setupDom()
 
     console.log(app.dom.adSizeCheckboxes)
+
+    app.dom.linksContainer.innerHTML = "";
 
     app.dom.linkOutput.value = "";
 
@@ -173,20 +270,95 @@ function generateLinks(numberOfJsons) {
     }
 
     for (var i = 0; i < replacedArr.length; i++) {
+
+        // app.dom.linksTextarea.innerHTML += replacedArr[i] + "\n"
+
+
         // app.dom.linksContainer.innerHTML += "<label><input type='checkbox' target='_blank' name='adlink'><a class='preview-link' href='" + replacedArr[i] +"'>" + replacedNameArr[i][1] + "</a></label><br>";
         // app.dom.linksContainer.innerHTML += "<a class='preview-link' href='" + replacedArr[i] + "'>" + replacedNameArr[i][1] + "</a><br>";
 
-        var link = document.createElement("div");
-        link.setAttribute("data-link", replacedArr[i]);
-        link.classList.add("preview-link");
-        link.innerHTML = replacedNameArr[i][1]
-        app.dom.linksContainer.appendChild(link)
-        link.addEventListener("click", previewLinksClickHandler);
-        // link.addEventListener("click", function(e) {
-            // console.log(e)
-        // });
+        var linkLabel = document.createElement("label");
+        linkLabel.classList.add("preview-link-label");
+        app.dom.linksContainer.appendChild(linkLabel);
+
+        var linkCheckbox = document.createElement("input");
+        linkCheckbox.setAttribute("type", "checkbox");
+        linkCheckbox.classList.add("preview-link-checkbox");
+        linkCheckbox.addEventListener("change", checkboxChangeHandler)
+        linkLabel.appendChild(linkCheckbox);
+
+        var linkEl = document.createElement("div");
+        linkEl.setAttribute("data-link", replacedArr[i]);
+        linkEl.classList.add("preview-link");
+        linkEl.innerHTML = replacedNameArr[i][1];
+        linkLabel.appendChild(linkEl);
+        linkEl.addEventListener("click", previewLinksClickHandler);
+    }
+}
+
+function checkboxChangeHandler(e) {
+    console.log("checked")
+
+    app.dom.previewLinksOpenSelected.removeAttribute('disabled')
+
+}
+
+function previewOptionsHandler(e) {
+
+    setupDom();
+
+    var targetAction = e.currentTarget.dataset.action;
+
+    switch (targetAction) {
+
+        case "selectall":
+
+            app.dom.previewLinksOpenSelected.removeAttribute("disabled");
+
+            for (var i = 0; i < app.dom.previewLinksCheckboxes.length; i++) {
+
+                if (!app.dom.previewLinksCheckboxes[i].hasAttribute("disabled")) {
+
+                    app.dom.previewLinksCheckboxes[i].checked = true;
+
+                }
+
+            }
+
+            break;
+
+        case "deselectall":
+
+            app.dom.previewLinksOpenSelected.setAttribute("disabled", "true");
+
+            for (var i = 0; i < app.dom.previewLinksCheckboxes.length; i++) {
+
+                app.dom.previewLinksCheckboxes[i].checked = false;
+
+            }
+
+            break;
+
+        case "openselected":
+
+            console.log("openselected");
+
+            for (var i = 0; i < app.dom.previewLinksCheckboxes.length; i++) {
+
+                if (app.dom.previewLinksCheckboxes[i].checked === true) {
+
+                    window.open(app.dom.previewLinksCheckboxes[i].parentNode.childNodes[1].dataset.link);
+
+                }
+
+
+            }
+
+            break;
 
     }
+
+
 }
 
 function addRemoveCustomSize(e) {
