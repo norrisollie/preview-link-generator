@@ -1,0 +1,82 @@
+/* style.css */
+:root {
+    --main-font-size: 16px;
+    --main-text-color: #000;
+}
+
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue";
+    color: #FFF;
+}
+
+* {
+    box-sizing: border-box;
+    font-size: var(--main-font-size);
+    color: var(--main-text-color);
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 12px;
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
+.section {
+    padding: 10px 0;
+    border-bottom: 1px solid lightgrey;
+}
+
+.section:first-child {
+    padding-top: 10px;
+}
+
+.inner {
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.inner.row {
+    flex-direction: row;
+}
+
+.inner.column {
+    flex-direction: column;
+}
+
+.input-text, .input-textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    outline: none;
+}
+
+.input-textarea {
+    height: 150px;
+}
+
+#main-wrapper {
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    background-color: #FFF;
+    margin: 0 auto;
+    padding: 0 20px;
+}
