@@ -15,16 +15,16 @@
                     <div class="title">Base URL</div>
                     <div class="subtitle">Enter the path of the index.html file</div>
                 </div>
-                <div class="inner">
-                    <input class="input-text" type="text">
-                </div>
+                <div class="inner row">
+                    <input class="input-text" type="text" placeholder="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/120x600/index.html">
+                </div data-width="120" data-height="600">
             </div>
             <div class="section">
                 <div class="inner column">
                     <div class="title">JSON file names</div>
                     <div class="subtitle">Enter the name of JSON files. Each JSON name must be either on an individual line or seprated by a comma</div>
                 </div>
-                <div class="inner">
+                <div class="inner row">
                     <textarea class="input-textarea" type="text"></textarea>
                 </div>
             </div>
@@ -33,16 +33,96 @@
                     <div class="title">Ad Sizes</div>
                     <div class="subtitle">Click the checkbox to generate a URL for the sizes you need</div>
                 </div>
+                <div class="inner">
+                    <label class="ad-size-label">
+                        <input class="ad-size-checkbox" type="checkbox" name="size" data-width="120" data-height="600">120x600</label>
+                    <label class="ad-size-label">
+                        <input class="ad-size-checkbox" type="checkbox" name="size" data-width="160" data-height="600">160x600</label>
+                    <label class="ad-size-label">
+                        <input class="ad-size-checkbox" type="checkbox" name="size" data-width="300" data-height="250">300x250</label>
+                    <label class="ad-size-label">
+                        <input class="ad-size-checkbox" type="checkbox" name="size" data-width="300" data-height="600">300x600</label>
+                    <label class="ad-size-label">
+                        <input class="ad-size-checkbox" type="checkbox" name="size" data-width="300" data-height="50">300x50</label>
+                    <label class="ad-size-label">
+                        <input class="ad-size-checkbox" type="checkbox" name="size" data-width="320" data-height="50">320x50</label>
+                    <label class="ad-size-label">
+                        <input class="ad-size-checkbox" type="checkbox" name="size" data-width="320" data-height="480">320x480</label>
+                    <label class="ad-size-label">
+                        <input class="ad-size-checkbox" type="checkbox" name="size" data-width="728" data-height="90">728x90</label>
+                    <label class="ad-size-label">
+                        <input class="ad-size-checkbox" type="checkbox" name="size" data-width="970" data-height="250">970x250</label>
+                </div>
             </div>
             <div class="section">
-                <div class="inner column">
-                    <div class="title"></div>
-                    <div class="subtitle">Enter the </div>
+                <div class="inner row centered">
+                    <input class="button" type="button" value="Generate Links">
+                    <input class="button" type="button" value="Reset Form">
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div id="floating-container" class="container"></div> -->
+    <div id="floating-container" class="container">
+        <div id="floating-wrapper">
+            <div class="section">
+                <div class="inner row">
+                    <div class="title preview-button" id="preview-links-button" data-state="closed">Preview Links</div>
+                </div>
+                <div class="inner row">
+                    <input class="button preview-section-buttons" id="preview-links-select" data-action="select" type="button" value="Select All">
+                    <input class="button preview-section-buttons" id="preview-links-deselect" disabled data-action="deselect" type="button" value="Deselect All">
+                    <input class="button preview-section-buttons" id="preview-links-copy" disabled data-action="copy" type="button" value="Copy Selected">
+                    <input class="button preview-section-buttons" id="preview-links-open" disabled data-action="open" type="button" value="Open Selected">
+                    <input class="button preview-section-buttons" id="preview-links-preview" disabled data-action="preview" type="button" value="Preview Selected">
+                    <input class="input-text" type="text" placeholder="Search">
+                </div>
+            </div>
+            <div class="section">
+                <div class="inner row">
+                    <textarea class="input-textarea" id="json-links-textarea"></textarea>
+                </div>
+            </div>
+            <div class="inner column">
+                <div class="json-link-item" data-fullurl="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/backing-you/120x600/index.html?120x600-invoices-tof" data-width="120" data-height="600">
+                    <label>
+                        <input class="json-link-checkbox" type="checkbox">
+                        <span class="json-link-name">120x600-invoices-tof</span>
+                    </label>
+                </div>
+                <div class="json-link-item" data-fullurl="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/backing-you/160x600/index.html?160x600-invoices-generic" data-width="160" data-height="600">
+                    <label>
+                        <input class="json-link-checkbox" type="checkbox">
+                        <span class="json-link-name">160x600-invoices-generic</span>
+                    </label>
+                </div>
+                <div class="json-link-item" data-fullurl="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/backing-you/300x250/index.html?300x250-expenses-generic" data-width="300" data-height="250">
+                    <label>
+                        <input class="json-link-checkbox" type="checkbox">
+                        <span class="json-link-name">300x250-expenses-generic</span>
+                    </label>
+                </div>
+                <div class="json-link-item" data-fullurl="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/backing-you/300x600/index.html?300x600-expenses-60" data-width="300" data-height="600">
+                    <label>
+                        <input class="json-link-checkbox" type="checkbox">
+                        <span class="json-link-name">300x600-expenses-tof</span>
+                    </label>
+                </div>
+                <div class="json-link-item" data-fullurl="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/backing-you/728x90/index.html?728x90-invoices-trial" data-width="728" data-height="90">
+                    <label>
+                        <input class="json-link-checkbox" type="checkbox">
+                        <span class="json-link-name">728x90-invoices-trial</span>
+                    </label>
+                </div>
+                <div class="json-link-item" data-fullurl="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/backing-you/970x250/index.html?970x250-invoices-trial" data-width="970" data-height="250">
+                    <label>
+                        <input class="json-link-checkbox" type="checkbox">
+                        <span class="json-link-name">970x250-invoices-trial</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="app.js"></script>
 </body>
 
 </html>
