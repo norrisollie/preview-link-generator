@@ -80,32 +80,45 @@ function previewButtonsClickHandler(e) {
 
                 app.dom.creativePreviewContainer[i].style.display = "flex";
 
-                var optionsContainer = document.createElement("div");
-                var reloadButton = document.createElement("input");
-                reloadButton.setAttribute("type", "button")
-                reloadButton.setAttribute("value", "refresh")
-                reloadButton.classList.add("reload-button");
-                reloadButton.addEventListener("click", reloadButtonClickHandler);
-                optionsContainer.classList.add("options-container")
+                if (app.dom.creativeCheckboxes[i].checked === true) {
 
-                var iframe = document.createElement("iframe");
+                    var http = new XMLHttpRequest();
+                    http.open('HEAD', previewUrl, false);
+                    http.send();
+                    if (http.status != 404) {
+                        var optionsContainer = document.createElement("div");
+                        var reloadButton = document.createElement("input");
+                        reloadButton.setAttribute("type", "button")
+                        reloadButton.setAttribute("value", "Reload Ad")
+                        reloadButton.classList.add("reload-button");
+                        reloadButton.addEventListener("click", reloadButtonClickHandler);
+                        optionsContainer.classList.add("options-container")
 
-                iframe.classList.add("preview-iframe");
-                iframe.setAttribute("width", adWidth)
-                iframe.setAttribute("height", adHeight)
-                iframe.setAttribute("src", previewUrl)
+                        var iframe = document.createElement("iframe");
 
-                previewInner.appendChild(iframe);
-                previewInner.appendChild(optionsContainer);
-                optionsContainer.appendChild(reloadButton);
+                        iframe.classList.add("preview-iframe");
+                        iframe.setAttribute("width", adWidth)
+                        iframe.setAttribute("height", adHeight)
+                        iframe.setAttribute("src", previewUrl)
 
-                break
+                        previewInner.appendChild(iframe);
+                        previewInner.appendChild(optionsContainer);
+                        optionsContainer.appendChild(reloadButton)
+                    } else {
+                        console.log("preview not working: " + previewUrl);
 
+                        previewInner.innerHTML += "404 (Not Found)";
+
+                    }
+                }
+                break;
         }
-
     }
-
 }
+
+
+
+
 
 
 window.onload = init();
