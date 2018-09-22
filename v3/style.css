@@ -1,7 +1,7 @@
 body,
 input,
 textarea {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', "Helvetica Neue", sans-serif;
     font-weight: normal;
     font-size: 14px;
     color: #414141;
@@ -77,6 +77,9 @@ iframe {
 .floating-container {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
 .wrapper,
@@ -117,6 +120,10 @@ iframe {
     align-items: flex-start;
 }
 
+.inner.spaced {
+    justify-content: space-between;
+}
+
 .button-container {
 	display: flex;
 	width: 100%;
@@ -128,6 +135,10 @@ iframe {
     width: 100px;
 }
 
+.size-checkbox-wrapper:hover, label:hover. input[type=checkbox]:hover {
+    cursor: pointer;
+}
+
 .size-checkbox {
     margin-right: 5px;
 }
@@ -135,6 +146,11 @@ iframe {
 .creative-container {
     border-top: 1px solid #ddd;
     width: 100%;
+}
+
+.creative-container.previews {
+    margin: 20px 0;
+    border: 1px solid !important;
 }
 
 .creative-container:first-child {
@@ -191,4 +207,32 @@ iframe {
     width: 100%;
     padding-top: 20px;
     box-sizing: content-box;
+}
+
+.close {
+    width: 19px;
+    height: 19px;
+    margin-right: 5px;
+    background-image: url(assets/close.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: 15px;
+    background-size: 15px;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+#links-textarea-container {
+    height: 0;
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#links-search-input {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin-left: auto;
 }

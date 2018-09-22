@@ -17,7 +17,7 @@
                     <div class="subtitle">Enter the index.html file path for any size creative on the preview server</div>
                 </div>
                 <div class="inner">
-                    <input type="text" name="" id="" value="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/120x600/index.html">
+                    <input type="text" name="" id="index-path-input" value="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html">
                 </div>
             </div>
             <div class="section">
@@ -26,7 +26,7 @@
                     <div class="subtitle">Enter all of the JSON file names for any size creative on the preview server</div>
                 </div>
                 <div class="inner">
-                    <textarea></textarea>
+                    <textarea id="json-name-textarea">160x600-summer-sale&#10;160x600-summer-sale-extended</textarea>
                 </div>
             </div>
             <div class="section">
@@ -37,49 +37,49 @@
                 <div class="inner">
                     <div class="size-checkbox-wrapper" data-width="120" data-height="600">
                         <label>
-                            <input type="checkbox" class="size-checkbox">120x600
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">120x600
                         </label>
                     </div>
                     <div class="size-checkbox-wrapper" data-width="160" data-height="600">
                         <label>
-                            <input type="checkbox" class="size-checkbox">160x600
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">160x600
                         </label>
                     </div>
                     <div class="size-checkbox-wrapper" data-width="300" data-height="250">
                         <label>
-                            <input type="checkbox" class="size-checkbox">300x250
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">300x250
                         </label>
                     </div>
                     <div class="size-checkbox-wrapper" data-width="300" data-height="600">
                         <label>
-                            <input type="checkbox" class="size-checkbox">300x600
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">300x600
                         </label>
                     </div>
                     <div class="size-checkbox-wrapper" data-width="320" data-height="50">
                         <label>
-                            <input type="checkbox" class="size-checkbox">320x50
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">320x50
                         </label>
                     </div>
                     <div class="size-checkbox-wrapper" data-width="468" data-height="60">
                         <label>
-                            <input type="checkbox" class="size-checkbox">468x60
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">468x60
                         </label>
                     </div>
                     <div class="size-checkbox-wrapper" data-width="728" data-height="90">
                         <label>
-                            <input type="checkbox" class="size-checkbox">728x90
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">728x90
                         </label>
                     </div>
                     <div class="size-checkbox-wrapper" data-width="970" data-height="250">
                         <label>
-                            <input type="checkbox" class="size-checkbox">970x250
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">970x250
                         </label>
                     </div>
                 </div>
             </div>
             <div class="section">
                 <div class="inner row">
-                    <input type="button" value="Generate Links">
+                    <input type="button" id="generate-button" value="Generate Links">
                 </div>
             </div>
         </div>
@@ -87,8 +87,9 @@
     <div class="floating-container">
         <div class="floating-wrapper">
             <div class="section">
-                <div class="inner column">
+                <div class="inner row spaced">
                     <div class="title">Preview Links</div>
+                    <div class="close" id="close-previews"></div>
                 </div>
                 <div class="section">
                     <div class="inner column">
@@ -98,12 +99,19 @@
                             <input class="preview-buttons" type="button" data-action="copy" value="Copy Selected">
                             <input class="preview-buttons" type="button" data-action="open" value="Open Selected">
                             <input class="preview-buttons" type="button" data-action="preview" value="Preview Selected">
-                            <input class="preview-input" type="text">
+                            <input class="preview-input" id="links-search-input" type="text" placeholder="Search for a JSON">
+                        </div>
+                    </div>
+                </div>
+                <div class="section" id="links-textarea-container">
+                    <div class="inner column">
+                        <div class="button-container">
+                            <textarea id="links-textarea"></textarea>                            
                         </div>
                     </div>
                 </div>
                 <div class="section">
-                    <div class="inner column">
+                    <div class="inner column" id="creatives">
                         <div class="creative-container" data-width="120" data-height="600" data-preview="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/120x600/index.html?120x600-summer-sale" data-name="120x600--json--test1">
                             <div class="creative-name-container">
                                 <label class="creative-label">
@@ -181,12 +189,12 @@
                                 <div class="creative-preview"></div>
                             </div>
                         </div>
-
-
-
-
-                        </div></div></div></div></div>
-            <script type="text/javascript" src="app.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="app.js"></script>
 </body>
 
 </html>
