@@ -28,6 +28,7 @@ function setupDom() {
     app.dom.jsonNameTextarea = document.getElementById("json-name-textarea")
     app.dom.adSizeCheckbox = document.querySelectorAll(".size-checkbox")
     app.dom.creatives = document.getElementById("creatives")
+    app.dom.copiedMessage = document.getElementById("copied-message")
 }
 
 function addListeners() {
@@ -83,6 +84,27 @@ function previewButtonsClickHandler(e) {
                 break;
 
             case "copy":
+
+                app.dom.copiedMessage.style.display = "block";
+
+                setTimeout(function() {
+                    app.dom.copiedMessage.style.opacity = "1";
+                },10);
+
+                setTimeout(function() {
+                    
+                    setTimeout(function() {
+
+                        app.dom.copiedMessage.style.display = "none";
+
+                    }, 500);
+
+                    app.dom.copiedMessage.style.opacity = "0";
+
+                }, 2000)
+
+
+
 
 
                 if (app.dom.creativeCheckboxes[i].checked === true) {
