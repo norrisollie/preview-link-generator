@@ -1,0 +1,272 @@
+body {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: #eee;
+}
+
+.row {
+    padding-top: 1em;
+    background-color: #FFF;
+    box-shadow: 0 1px 4px #a2a2a2;
+}
+
+.form-check-inline {
+    min-width: 6rem;
+}
+
+
+/*body,
+input,
+textarea {
+    font-family: 'Roboto', "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    color: #414141;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+input,
+textarea {
+    font-family: "Roboto";
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+input[type=text],
+textarea {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input[type=button] {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f1f1f1;
+    font-weight: 500;
+    margin: 2px;
+}
+
+input[type=button]:hover {
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+textarea {
+    min-height: 100px;
+}
+
+iframe {
+    border: none;
+    outline: none;
+    background-color: #fff;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 12px;
+}
+
+.container,
+.floating-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #eee;
+    padding: 100px 0;
+    overflow: scroll;
+}
+
+.floating-container {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.wrapper,
+.floating-wrapper {
+    width: 100%;
+    max-width: 1280px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 1px 4px #a2a2a2;
+}
+
+.section {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid;
+    padding: 5px 0;
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.inner {
+    width: 100%;
+    height: auto;
+    padding: 5px 0;
+}
+
+.inner.row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.inner.column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.inner.spaced {
+    justify-content: space-between;
+}
+
+.button-container {
+    display: flex;
+    width: 100%;
+    align-self: flex-end;
+}
+
+.size-checkbox-wrapper {
+    display: inline-block;
+    width: 100px;
+}
+
+.size-checkbox-wrapper:hover, label:hover. input[type=checkbox]:hover {
+    cursor: pointer;
+}
+
+.size-checkbox {
+    margin-right: 5px;
+}
+
+.creative-container {
+    border-top: 1px solid #ddd;
+    width: 100%;
+}
+
+.creative-container.previews {
+    margin: 20px 0;
+    border: 1px solid !important;
+}
+
+.creative-container:first-child {
+    border-top: 1px solid #ddd;
+}
+
+.creative-container:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+.creative-label {
+    display: flex;
+    align-items: center;
+}
+
+.creative-name {
+    padding: 10px 0;
+}
+
+.creative-name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.creative-checkbox {
+    margin: 0 20px;
+}
+
+.creative-preview-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    width: 100%;
+    background-color: lightgrey;
+    display: none;
+}
+
+.creative-preview {
+    background-color: #FFF;
+    border: 1px solid;
+    padding: 20px;
+}
+
+.preview-input {
+    margin: 2px;
+    width: 150px;
+}
+
+.options-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 20px;
+    box-sizing: content-box;
+}
+
+.close {
+    width: 19px;
+    height: 19px;
+    margin-right: 5px;
+    background-image: url(assets/close.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: 15px;
+    background-size: 15px;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+#links-textarea-container {
+    height: 0;
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#links-search-input {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin-left: auto;
+}
+
+#copied-message {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px;
+    z-index: 99999;
+    border-radius: 5px;
+    background-color: #000;
+    color: #FFF;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    transition: .5s ease;
+}*/

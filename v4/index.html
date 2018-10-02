@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Preview Link Generator</title>
+</head>
+
+<body>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h4>Preview Link Generator</h4>
+                    <form>
+                        <div class="form-group">
+                            <h5>Index Path</h5>
+                            <input class="form-control" type="text" name="" id="index-path-input" value="https://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <h5>JSON Names</h5>
+                            <textarea rows="4" class="form-control" id="links-textarea"></textarea>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <h5>Creative Sizes</h5>
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="120x600">
+                                <label class="custom-control-label" for="120x600">120x600</label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="160x600">
+                                <label class="custom-control-label" for="160x600">160x600</label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="300x250">
+                                <label class="custom-control-label" for="300x250">300x250</label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="300x600">
+                                <label class="custom-control-label" for="300x600">300x600</label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="728x90">
+                                <label class="custom-control-label" for="728x90">728x90</label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="970x250">
+                                <label class="custom-control-label" for="970x250">970x250</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Generate Links</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col">
+                <form>
+                    <div class="form-group">
+                        <h6>Index Path</h6>
+                        <input class="form-control" type="text" name="" id="index-path-input" value="https://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html">
+                    </div>
+                    <div class="form-group">
+                        <h6>JSON Names</h6>
+                        <textarea class="form-control" id="links-textarea"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <h6>Ad Sizes</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <label class="form-check-label" for="inlineCheckbox1">120x600</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">160x600</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                <label class="form-check-label" for="inlineCheckbox3">300x250</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                <label class="form-check-label" for="inlineCheckbox4">300x600</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                                <label class="form-check-label" for="inlineCheckbox5">320x50</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                <label class="form-check-label" for="inlineCheckbox6">468x60</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
+                                <label class="form-check-label" for="inlineCheckbox7">728x90</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option8">
+                                <label class="form-check-label" for="inlineCheckbox8">970x250</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Generate Links</button>
+                        </div>
+                </form>
+                </div>
+            </div> -->
+        <!--     <div id="copied-message" class="hidden">
+            <div id="">Links Copied to Clipboard!</div>
+    </div> -->
+        <!--             <main id="content" role="main">
+                    <form>
+                        <div class="form-group">
+                            <label>Index Path</label>
+                            <input class="form-control" type="text" name="" id="index-path-input" value="https://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html">
+                        </div>
+                        <div class="form-group">
+                            <label>JSON Names</label>
+                            <textarea class="form-control" id="links-textarea"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label>Ad Sizes</label>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <label class="form-check-label" for="inlineCheckbox1">120x600</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">160x600</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                <label class="form-check-label" for="inlineCheckbox3">300x250</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                <label class="form-check-label" for="inlineCheckbox4">300x600</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                                <label class="form-check-label" for="inlineCheckbox5">320x50</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                <label class="form-check-label" for="inlineCheckbox6">468x60</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
+                                <label class="form-check-label" for="inlineCheckbox7">728x90</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option8">
+                                <label class="form-check-label" for="inlineCheckbox8">970x250</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Generate Links</button>
+                        </div>
+                    </form>
+                </div> -->
+        <!--             <div class="section">
+                <div class="inner column">
+                    <div class="title">JSON Names</div>
+                    <div class="subtitle">Enter all of the JSON file names for any size creative on the preview server</div>
+                </div>
+                <div class="inner">
+                    <textarea id="json-name-textarea">160x600-summer-sale&#10;160x600-summer-sale-extended</textarea>
+                </div>
+            </div>
+            <div class="section">
+                <div class="inner column">
+                    <div class="title">Creative Sizes</div>
+                    <div class="subtitle">Check all of the required creative sizes to generate links for them</div>
+                </div>
+                <div class="inner">
+                    <div class="size-checkbox-wrapper" data-width="120" data-height="600">
+                        <label>
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">120x600
+                        </label>
+                    </div>
+                    <div class="size-checkbox-wrapper" data-width="160" data-height="600">
+                        <label>
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">160x600
+                        </label>
+                    </div>
+                    <div class="size-checkbox-wrapper" data-width="300" data-height="250">
+                        <label>
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">300x250
+                        </label>
+                    </div>
+                    <div class="size-checkbox-wrapper" data-width="300" data-height="600">
+                        <label>
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">300x600
+                        </label>
+                    </div>
+                    <div class="size-checkbox-wrapper" data-width="320" data-height="50">
+                        <label>
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">320x50
+                        </label>
+                    </div>
+                    <div class="size-checkbox-wrapper" data-width="468" data-height="60">
+                        <label>
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">468x60
+                        </label>
+                    </div>
+                    <div class="size-checkbox-wrapper" data-width="728" data-height="90">
+                        <label>
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">728x90
+                        </label>
+                    </div>
+                    <div class="size-checkbox-wrapper" data-width="970" data-height="250">
+                        <label>
+                            <input type="checkbox" id="ad-size-checkbox" class="size-checkbox">970x250
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="inner row">
+                    <input class="btn btn-outline-primary" type="button" id="generate-button" value="Generate Links">
+                </div>
+            </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- <div class="floating-container">
+        <div class="floating-wrapper">
+            <div class="section">
+                <div class="inner row spaced">
+                    <div class="title">Preview Links</div>
+                    <div class="close" id="close-previews"></div>
+                </div>
+                <div class="section">
+                    <div class="inner column">
+                        <div class="button-container">
+                            <input class="preview-buttons" type="button" data-action="select" value="Select All">
+                            <input class="preview-buttons" type="button" data-action="deselect" value="Deselect All">
+                            <input class="preview-buttons" type="button" data-action="copy" value="Copy Selected">
+                            <input class="preview-buttons" type="button" data-action="open" value="Open Selected">
+                            <input class="preview-buttons" type="button" data-action="preview" value="Preview Selected">
+                            <input class="preview-input" id="links-search-input" type="text" placeholder="Search for a JSON">
+                        </div>
+                    </div>
+                </div>
+                <div class="section" id="links-textarea-container">
+                    <div class="inner column">
+                        <div class="button-container">
+                            <textarea id="links-textarea"></textarea>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="inner column" id="creatives">
+                        <div class="creative-container" data-width="120" data-height="600" data-preview="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/120x600/index.html?120x600-summer-sale" data-name="120x600--json--test1">
+                            <div class="creative-name-container">
+                                <label class="creative-label">
+                                    <input class="creative-checkbox" type="checkbox">
+                                    <div class="creative-name">120x600--json--test1</div>
+                                </label>
+                            </div>
+                            <div class="creative-preview-container">
+                                <div class="creative-preview"></div>
+                            </div>
+                        </div>
+                        <div class="creative-container" data-width="160" data-height="600" data-preview="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html?160x600-summer-sale" data-name="160x600--json--test1">
+                            <div class="creative-name-container">
+                                <label class="creative-label">
+                                    <input class="creative-checkbox" type="checkbox">
+                                    <div class="creative-name">160x600--json--test1</div>
+                                </label>
+                            </div>
+                            <div class="creative-preview-container">
+                                <div class="creative-preview"></div>
+                            </div>
+                        </div>
+                        <div class="creative-container" data-width="300" data-height="250" data-preview="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/300x250/index.html?300x250-summer-sale" data-name="300x250--json--test1">
+                            <div class="creative-name-container">
+                                <label class="creative-label">
+                                    <input class="creative-checkbox" type="checkbox">
+                                    <div class="creative-name">300x250--json--test1</div>
+                                </label>
+                            </div>
+                            <div class="creative-preview-container">
+                                <div class="creative-preview"></div>
+                            </div>
+                        </div>
+                        <div class="creative-container" data-width="300" data-height="600" data-preview="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/300x600/index.html?300x600-summer-sale" data-name="300x600--json--test1">
+                            <div class="creative-name-container">
+                                <label class="creative-label">
+                                    <input class="creative-checkbox" type="checkbox">
+                                    <div class="creative-name">300x600--json--test1</div>
+                                </label>
+                            </div>
+                            <div class="creative-preview-container">
+                                <div class="creative-preview"></div>
+                            </div>
+                        </div>
+                        <div class="creative-container" data-width="320" data-height="50" data-preview="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/320x50/index.html?320x50-summer-sale" data-name="320x50--json--test1">
+                            <div class="creative-name-container">
+                                <label class="creative-label">
+                                    <input class="creative-checkbox" type="checkbox">
+                                    <div class="creative-name">320x50--json--test1</div>
+                                </label>
+                            </div>
+                            <div class="creative-preview-container">
+                                <div class="creative-preview"></div>
+                            </div>
+                        </div>
+                        <div class="creative-container" data-width="728" data-height="90" data-preview="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/728x90/index.html?728x90-summer-sale" data-name="728x90--json--test1">
+                            <div class="creative-name-container">
+                                <label class="creative-label">
+                                    <input class="creative-checkbox" type="checkbox">
+                                    <div class="creative-name">728x90--json--test1</div>
+                                </label>
+                            </div>
+                            <div class="creative-preview-container">
+                                <div class="creative-preview"></div>
+                            </div>
+                        </div>
+                        <div class="creative-container" data-width="970" data-height="250" data-preview="http://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/970x250/index.html?970x250-summer-sale" data-name="970x250--json--test1">
+                            <div class="creative-name-container">
+                                <label class="creative-label">
+                                    <input class="creative-checkbox" type="checkbox">
+                                    <div class="creative-name">970x250--json--test1</div>
+                                </label>
+                            </div>
+                            <div class="creative-preview-container">
+                                <div class="creative-preview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        <!-- </div> -->
+        <script type="text/javascript" src="app.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+
+</html>
