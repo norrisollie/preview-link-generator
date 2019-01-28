@@ -2,50 +2,29 @@ window.onload = function() {
 
     const urlSplitHandler = () => {
 
+        // split url at question mark
         let urlSplit = window.location.href.split("?")[1];
 
+        // regex required to find the base url, ad sizes and json names
         let baseUrl_regex = /(?<=base_url=)(.*?)(?=\&)/g;
-
         let adSizes_regex = /(?<=ad_sizes=)(.*?)(?=\&)/g;
-
         let jsonNames_regex = /(?<=json_names=)(.*)/g;
 
+        // use match to return an array that contains a string with matching characters
         let baseUrl = urlSplit.match(baseUrl_regex);
         let adSizes = urlSplit.match(adSizes_regex);
         let jsonNames = urlSplit.match(jsonNames_regex);
 
-        console.log("Base URL:", baseUrl[0]);
+        // 
+        let baseUrlArray = adSizes[0];
+        let adSizesArray = adSizes[0].split(",");
+        let jsonNamesArray = adSizes[0].split(",");
 
-        let adSizesArray = adSizes.map(adSizes => {
-
-            let adSizesSplit = adSizes.split(",");
-
-            return adSizesSplit
-
-        });
-
-        let jsonNamesArray = jsonNames.map(jsonNames => {
-
-            let jsonNamesSplit = jsonNames.split(",");
-
-            return jsonNamesSplit
-
-        });
-
-
-
-        console.log(adSizesArray[0])
-        console.log(jsonNamesArray[0])
-
-
-
-
-
+        console.log(baseUrlArray)
+        console.log(adSizesArray)
+        console.log(jsonNamesArray)
 
     }
-
-
-
 
     urlSplitHandler();
 
