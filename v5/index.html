@@ -1,14 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Preview Link Generator - v5</title>
+    <meta charset="UTF-8">
+    <title>Preview Link Generator - v5</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <div id="container">
+        <div id="wrapper">
 
+            <div class="section">
+                <div class="inner-section section-header">Index File Path</div>
+                <div class="inner-section">
+                    <input class="text-input">
+                </div>
+            </div>
 
-	
-	<script src="logic.js"></script>
+            <div class="section">
+                <div class="inner-section section-header">JSON Names</div>
+                <div class="inner-section">
+                    <textarea class="text-input" rows="5"></textarea>
+                </div>
+            </div>
 
+            <div class="section">
+                <div class="inner-section section-header">Ad Sizes</div>
+                <div class="inner-section" id="ad-sizes-section">
+                    <div class="ad-size-wrapper">
+                        <input class="input-checkbox" type="checkbox" id="120x600">
+                        <label class="ad-size-label" for="120x600">120x600</label>
+                    </div>
+                    <div class="ad-size-wrapper">
+                        <input class="input-checkbox" type="checkbox" id="160x600">
+                        <label class="ad-size-label" for="160x600">160x600</label>
+                    </div>
+                    <div class="ad-size-wrapper">
+                        <input class="input-checkbox" type="checkbox" id="240x400">
+                        <label class="ad-size-label" for="240x400">240x400</label>
+                    </div>
+                    <div class="ad-size-wrapper">
+                        <input class="input-checkbox" type="checkbox" id="300x250">
+                        <label class="ad-size-label" for="300x250">300x250</label>
+                    </div>
+                    <div class="ad-size-wrapper">
+                        <input class="input-checkbox" type="checkbox" id="300x600">
+                        <label class="ad-size-label" for="300x600">300x600</label>
+                    </div>
+                    <div class="ad-size-wrapper">
+                        <input class="input-checkbox" type="checkbox" id="300x50">
+                        <label class="ad-size-label" for="300x50">300x50</label>
+                    </div>
+                    <div class="ad-size-wrapper">
+                        <input class="input-checkbox" type="checkbox" id="320x50">
+                        <label class="ad-size-label" for="320x50">320x50</label>
+                    </div>
+                    <div class="ad-size-wrapper">
+                        <input class="input-checkbox" type="checkbox" id="468x60">
+                        <label class="ad-size-label" for="468x60">468x60</label>
+                    </div>
+                    <div class="ad-size-wrapper">
+                        <input class="input-checkbox" type="checkbox" id="728x90">
+                        <label class="ad-size-label" for="728x90">728x90</label>
+                    </div>
+                    <div class="ad-size-wrapper">
+                        <input class="input-checkbox" type="checkbox" id="970x250">
+                        <label class="ad-size-label" for="970x250">970x250</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="inner-section">
+                    <input class="button-input" type="submit" value="Generate Preview Links">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="logic.js"></script>
 </body>
+
 </html>

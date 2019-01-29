@@ -1,5 +1,25 @@
-window.onload = function() {
+	const checkUrl = () => {
 
+		console.log("Checking for parameters.");
+
+		let urlCheck = window.location.href.split("?");
+
+		if(urlCheck.length > 1) {
+
+			console.log("There are some parameters. Running urlSplitHandler.")
+
+			urlSplitHandler();
+
+		} else {
+
+			console.log("There are no parameters.");
+
+			return
+
+		};
+	};
+
+	// if there are paramaters, this function will run
     const urlSplitHandler = () => {
 
         // split url at question mark
@@ -18,7 +38,7 @@ window.onload = function() {
         // 
         let baseUrlArray = adSizes[0];
         let adSizesArray = adSizes[0].split(",");
-        let jsonNamesArray = adSizes[0].split(",");
+        let jsonNamesArray = jsonNames[0].split(",");
 
         console.log(baseUrlArray)
         console.log(adSizesArray)
@@ -26,7 +46,17 @@ window.onload = function() {
 
     }
 
-    urlSplitHandler();
+
+    const init = () => {
+
+    	checkUrl();
+
+    }
+
+
+
+
+window.onload = init();
 
 
 
@@ -63,7 +93,7 @@ window.onload = function() {
 
 
 
-}
+// }
 // var str = base_url=xxx&ad_sizes=300x250,300x600,728x90,970x250&json_names=120x600-test1,120x600-test2
 
 // app_id=999&app_key=456&operator=operator&origin=origin&service=service&train_status=passenger
