@@ -10,73 +10,171 @@
 <body>
     <div id="container">
         <div id="wrapper">
-
             <div class="section">
                 <div class="inner-section section-header">Index File Path</div>
                 <div class="inner-section">
-                    <input class="text-input">
+                    <input type="text" class="text-input" id="index-path-input">
                 </div>
             </div>
-
             <div class="section">
                 <div class="inner-section section-header">JSON Names</div>
                 <div class="inner-section">
-                    <textarea class="text-input" rows="5"></textarea>
+                    <textarea class="text-input" id="json-name-input" rows="5"></textarea>
                 </div>
             </div>
-
             <div class="section">
                 <div class="inner-section section-header">Ad Sizes</div>
                 <div class="inner-section" id="ad-sizes-section">
                     <div class="ad-size-wrapper">
-                        <input class="input-checkbox" type="checkbox" id="120x600">
+                        <input class="ad-size-checkbox" type="checkbox" id="120x600" data-width="120" data-height="600">
                         <label class="ad-size-label" for="120x600">120x600</label>
                     </div>
                     <div class="ad-size-wrapper">
-                        <input class="input-checkbox" type="checkbox" id="160x600">
+                        <input class="ad-size-checkbox" type="checkbox" id="160x600" data-width="160" data-height="600">
                         <label class="ad-size-label" for="160x600">160x600</label>
                     </div>
                     <div class="ad-size-wrapper">
-                        <input class="input-checkbox" type="checkbox" id="240x400">
+                        <input class="ad-size-checkbox" type="checkbox" id="240x400" data-width="240" data-height="400">
                         <label class="ad-size-label" for="240x400">240x400</label>
                     </div>
                     <div class="ad-size-wrapper">
-                        <input class="input-checkbox" type="checkbox" id="300x250">
+                        <input class="ad-size-checkbox" type="checkbox" id="300x250" data-width="300" data-height="250">
                         <label class="ad-size-label" for="300x250">300x250</label>
                     </div>
                     <div class="ad-size-wrapper">
-                        <input class="input-checkbox" type="checkbox" id="300x600">
+                        <input class="ad-size-checkbox" type="checkbox" id="300x600" data-width="300" data-height="600">
                         <label class="ad-size-label" for="300x600">300x600</label>
                     </div>
                     <div class="ad-size-wrapper">
-                        <input class="input-checkbox" type="checkbox" id="300x50">
+                        <input class="ad-size-checkbox" type="checkbox" id="300x50" data-width="300" data-height="50">
                         <label class="ad-size-label" for="300x50">300x50</label>
                     </div>
                     <div class="ad-size-wrapper">
-                        <input class="input-checkbox" type="checkbox" id="320x50">
+                        <input class="ad-size-checkbox" type="checkbox" id="320x50" data-width="320" data-height="50">
                         <label class="ad-size-label" for="320x50">320x50</label>
                     </div>
                     <div class="ad-size-wrapper">
-                        <input class="input-checkbox" type="checkbox" id="468x60">
+                        <input class="ad-size-checkbox" type="checkbox" id="468x60" data-width="468" data-height="60">
                         <label class="ad-size-label" for="468x60">468x60</label>
                     </div>
                     <div class="ad-size-wrapper">
-                        <input class="input-checkbox" type="checkbox" id="728x90">
+                        <input class="ad-size-checkbox" type="checkbox" id="728x90" data-width="728" data-height="90">
                         <label class="ad-size-label" for="728x90">728x90</label>
                     </div>
                     <div class="ad-size-wrapper">
-                        <input class="input-checkbox" type="checkbox" id="970x250">
+                        <input class="ad-size-checkbox" type="checkbox" id="970x250" data-width="970" data-height="250">
                         <label class="ad-size-label" for="970x250">970x250</label>
                     </div>
                 </div>
             </div>
-
             <div class="section">
                 <div class="inner-section">
-                    <input class="button-input" type="submit" value="Generate Preview Links">
+                    <input class="button-input" id="generate-links-button" type="submit" value="Generate Preview Links">
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="overlay-container" class="hidden">
+        <div id="overlay-wrapper">
+            <div class="section">
+                <div class="inner-section" id="close-overlay-wrapper">
+                    <div id="close-overlay-button"></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="inner-section" id="preview-buttons-wrapper">
+                    <input class="preview-options-button" type="submit" id="" data-action="select" value="Select All">
+                    <input class="preview-options-button" type="submit" id="" data-action="deselect" value="Deselect All">
+                    <input class="preview-options-button" type="submit" id="" data-action="copy" value="Copy Selected Links">
+                    <input class="preview-options-button" type="submit" id="" data-action="open" value="Open Selected Links">
+                    <input class="preview-options-button" type="submit" id="" data-action="preview" value="Preview Selected Links">
+                </div>
+            </div>
+            <div class="section" id="copy-links-section">
+                <div class="inner-section" id="close-overlay-wrapper">
+                    <textarea id="copy-links-textarea"></textarea>
+                </div>
+            </div>
+            <div class="section">
+                <div class="inner-section" id="json-names-wrapper">
 
+                    <div class="name-preview-wrapper">
+                        <div class="json-name-wrapper">
+                            <div class="json-name-checkbox-wrapper">
+                                <input class="json-name-checkbox" type="checkbox" id="120x600-test-json1">
+                                <label class="json-name-label" for="120x600-test-json1" data-full-url="https://m5-preview.s3.amazonaws.com/mitsubishi/1807-mitsubishi-rm/approved-used-event/index.html?120x600-json1">.../120x600-test-json1</label>
+                            </div>
+                            <div class="json-copy-open-wrapper">
+                                <input class="json-preview-buttons" type="submit" value="Copy Link" data-action="copy-link">
+                                <input class="json-preview-buttons" type="submit" value="Open Link" data-action="open-link">
+                                <input class="json-preview-buttons open-preview" type="submit" value="Open Preview" data-action="open-preview">
+                                <input class="json-preview-buttons close-preview" type="submit" value="Close Preview" data-action="close-preview">
+                            </div>
+                        </div>
+                        <div class="json-preview-wrapper">
+                            <div class="preview-iframe-wrapper">
+                                <div class="preview-iframe-container">
+                                    <iframe class="preview-iframe" width="300" height="250"></iframe>
+                                    <div class="preview-info-container">
+                                        <input type="submit" value="Replay Ad">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="name-preview-wrapper">
+                        <div class="json-name-wrapper">
+                            <div class="json-name-checkbox-wrapper">
+                                <input class="json-name-checkbox" type="checkbox" id="120x600-test-json2">
+                                <label class="json-name-label" for="120x600-test-json2" data-full-url="https://m5-preview.s3.amazonaws.com/mitsubishi/1807-mitsubishi-rm/approved-used-event/index.html?120x600-json1">.../120x600-test-json2</label>
+                            </div>
+                            <div class="json-copy-open-wrapper">
+                                <input class="json-preview-buttons" type="submit" value="Copy Link" data-action="copy-link">
+                                <input class="json-preview-buttons" type="submit" value="Open Link" data-action="open-link">
+                                <input class="json-preview-buttons open-preview" type="submit" value="Open Preview" data-action="open-preview">
+                                <input class="json-preview-buttons close-preview" type="submit" value="Close Preview" data-action="close-preview">
+                            </div>
+                        </div>
+                        <div class="json-preview-wrapper">
+                            <div class="preview-iframe-wrapper">
+                                <div class="preview-iframe-container">
+                                    <iframe class="preview-iframe" width="300" height="250"></iframe>
+                                    <div class="preview-info-container">
+                                        <input type="submit" value="Replay Ad">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="name-preview-wrapper">
+                        <div class="json-name-wrapper">
+                            <div class="json-name-checkbox-wrapper">
+                                <input class="json-name-checkbox" type="checkbox" id="120x600-test-json3">
+                                <label class="json-name-label" for="120x600-test-json3" data-full-url="https://m5-preview.s3.amazonaws.com/mitsubishi/1807-mitsubishi-rm/approved-used-event/index.html?120x600-json1">.../120x600-test-json3</label>
+                            </div>
+                            <div class="json-copy-open-wrapper">
+                                <input class="json-preview-buttons" type="submit" value="Copy Link" data-action="copy-link">
+                                <input class="json-preview-buttons" type="submit" value="Open Link" data-action="open-link">
+                                <input class="json-preview-buttons open-preview" type="submit" value="Open Preview" data-action="open-preview">
+                                <input class="json-preview-buttons close-preview" type="submit" value="Close Preview" data-action="close-preview">
+                            </div>
+                        </div>
+                        <div class="json-preview-wrapper">
+                            <div class="preview-iframe-wrapper">
+                                <div class="preview-iframe-container">
+                                    <iframe class="preview-iframe" width="300" height="250"></iframe>
+                                    <div class="preview-info-container">
+                                        <input type="submit" value="Replay Ad">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
     <script src="logic.js"></script>
