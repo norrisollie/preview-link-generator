@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Preview Link Generator</title>
+  </head>
+  <body>
+    <div class="container" id="fixed-container">
+      
+      <div class="wrapper" id="fixed-wrapper">
+
+        <div class="section">
+          <div class="inner-section">
+            <div class="section-title">Index File Path</div>
+          </div>
+
+          <div class="inner-section">
+            <input class="input-text" id="index-path-input" type="text" placeholder="https://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html">
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="inner-section">
+            <div class="section-title">JSON Names</div>
+          </div>
+          <div class="inner-section">
+                <textarea class="input-textarea" id="json-names-input" rows="5" placeholder="160x600-summer-sale&#10;160x600-summer-sale-extended"></textarea>
+              </div>
+        </div>
+
+        <div class="section">
+
+            <div class="inner-section">
+              <div class="section-title">Ad Sizes</div>
+            </div>
+  
+            <div class="inner-section is-wrapped">
+                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="120x600"> 120x600</label></div>
+                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="160x600"> 160x600</label></div>
+                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="300x250"> 300x250</label></div>
+                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="320x50"> 320x50</label></div>
+                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="300x600"> 300x600</label></div>
+                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="728x90"> 728x90</label></div>
+                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="970x250"> 970x250</label></div>
+                </div>
+
+          </div>
+
+        <div class="section">
+          <div class="inner-section">
+                
+                <div class="input-button primary" id="generate-links-button">Generate Links</div>
+
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <div class="wrapper" id="test-wrapper"></div>
+
+    </div>
+
+    <!-- <div class="container" id="overlay-container">
+            <div class="wrapper" id="overlay-wrapper">
+
+            </div>
+        </div> -->
+
+
+
+
+        <script src="app.js"></script>
+
+  </body>
+</html>

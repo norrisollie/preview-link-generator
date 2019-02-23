@@ -1,0 +1,135 @@
+input,
+select,
+textarea,
+button,
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: grayscale;
+    font-size: 16px;
+}
+
+body {
+    background-color: #eee;
+}
+
+/* container */
+
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* wrapper */
+.wrapper {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* section */
+.section {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 18px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+.inner-section {
+    display: flex;
+    flex-direction: row;
+}
+
+.inner-section.is-column {
+    flex-direction: column;
+}
+
+.inner-section.is-wrapped {
+    flex-wrap: wrap;
+}
+
+/* input buttons */
+.input-button {
+    display: inline-block;
+    padding: 5px 10px;
+    /* border: 1px solid #000; */
+    background-color: #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.input-button:last-child {
+    margin: 0;
+}
+
+.input-button:hover {
+    background-color: #ccc;
+}
+
+.input-button.primary {
+    background-color: #2ECC71;
+    color: #fff;
+}
+
+.input-button.primary:hover {
+    background-color: #0dc05b;
+}
+
+/* text and textarea inputs */
+.input-text, .input-textarea {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+/* size checkboxes */
+.size-checkbox-wrapper {
+    display: flex;
+    min-width: 110px;
+}
+
+.size-label-wrapper {
+    display: flex;
+}
+
+.size-input-checkbox {
+    margin-right: 5px;
+}
+
+.size-label-wrapper {
+    margin-right: 20px;
+}
+
+/* preview link wrapper */
+.preview-link-wrapper {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* test elements */
+#fixed-wrapper {
+    margin-bottom: 10px;
+}
+
+#test-wrapper {
+    background-color: #FFF;
+}
