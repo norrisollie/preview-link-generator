@@ -18,7 +18,7 @@
           </div>
 
           <div class="inner-section">
-            <input class="input-text" id="index-path-input" type="text" placeholder="https://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/summer-sale/160x600/index.html">
+            <input class="input-text" id="index-path-input" type="text" value="https://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/archived/summer-sale/160x600/index.html">
           </div>
         </div>
 
@@ -27,7 +27,7 @@
             <div class="section-title">JSON Names</div>
           </div>
           <div class="inner-section">
-                <textarea class="input-textarea" id="json-names-input" rows="5" placeholder="160x600-summer-sale&#10;160x600-summer-sale-extended"></textarea>
+                <textarea class="input-textarea" id="json-names-input" rows="5" placeholder="160x600-summer-sale&#10;160x600-summer-sale-extended">160x600-summer-sale&#10;160x600-summer-sale-extended&#10;160x600-test-json</textarea>
               </div>
         </div>
 
@@ -61,8 +61,24 @@
 
       </div>
 
-      <div class="wrapper" id="overlay-wrapper"></div>
+      <div class="wrapper" id="">
+          <div class="section">
+              <div class="inner-section">
+                
+                <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="select all" value="Select All">
+                <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="deselect all" value="Deselect All">
+                <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="open selected" value="Open Selected">
+                <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="preview selected" value="Preview Selected">
+                <input type="text" class="input-text" id="" placeholder="Search for a variant">
 
+              </div>
+            </div>
+            <div class="section">
+              <div class="inner-section is-column" id="overlay-wrapper">
+  
+              </div>
+            </div>
+      </div>
     </div>
 
     <div id="copy-textarea-wrapper">
@@ -77,15 +93,6 @@
           </div>
         </div>
     </div>
-
-    <!-- <div class="container" id="overlay-container">
-            <div class="wrapper" id="overlay-wrapper">
-
-            </div>
-        </div> -->
-
-
-
 
         <script src="app.js"></script>
 
