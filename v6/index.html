@@ -10,7 +10,7 @@
   <body>
     <div class="container" id="fixed-container">
       
-      <div class="wrapper" id="fixed-wrapper">
+      <div class="wrapper" id="form-wrapper">
 
         <div class="section">
           <div class="inner-section">
@@ -51,40 +51,35 @@
 
         <div class="section">
           <div class="inner-section">
-                
             <input type="button" class="input-button primary" id="generate-links-button" value="Generate Links">
-
           </div>
         </div>
-
         
-
       </div>
+      <div class="container" id="overlay-wrapper">
+      <div class="wrapper" id="preview-wrapper">
+        <div class="section">
+            <div class="inner-section">
+              
+              <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="select all" value="Select All">
+              <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="deselect all" value="Deselect All">
+              <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="copy links" value="Copy Links">
+              <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="open selected" value="Open Selected">
+              <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="preview selected" value="Preview Selected">
+              <input type="text" class="input-text" id="creative-search-input" placeholder="Search for a variant">
 
-      <div class="wrapper" id="">
+            </div>
+          </div>
           <div class="section">
-              <div class="inner-section">
-                
-                <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="select all" value="Select All">
-                <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="deselect all" value="Deselect All">
-                <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="open selected" value="Open Selected">
-                <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="preview selected" value="Preview Selected">
-                <input type="text" class="input-text" id="" placeholder="Search for a variant">
-
-              </div>
-            </div>
-            <div class="section">
-              <div class="inner-section is-column" id="overlay-wrapper">
-  
-              </div>
-            </div>
-      </div>
+            <div class="inner-section is-column" id="link-wrapper"></div>
+          </div>
+          </div>
     </div>
-
+  </div>
     <div id="copy-textarea-wrapper">
       <div class="section" id="copy-link-section">
         <div class="inner-section">
-          <div id="copy-link-text">Preview link copied to keyboard</div>
+          <div id="copy-link-text">Copied to clipboard</div>
         </div>
       </div>
       <div class="section">

@@ -25,6 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -112,6 +113,10 @@ body {
     border-radius: 5px;
     border: 1px solid #ccc;
     resize: none;
+}
+
+.input-text:focus, .input-textarea:focus {
+    border: 1px solid gray;
 }
 
 /* size checkboxes */
@@ -238,10 +243,20 @@ body {
 }
 
 /* test elements */
-#fixed-wrapper {
+#form-wrapper {
     margin-bottom: 10px;
 }
 
-#overlay-wrapper {
+#link-wrapper {
     background-color: #FFF;
+}
+
+#preview-wrapper {
+    margin-top: 100px;
+}
+
+#overlay-wrapper {
+    background-color: rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+    justify-content: start;
 }

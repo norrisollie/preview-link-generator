@@ -1,4 +1,3 @@
-
 const app = {};
 
 const init = () => {
@@ -40,28 +39,42 @@ const setupDom = () => {
   ];
 
   // test wrapper to append links
-  app.dom.overlayWrapper = document.getElementById("overlay-wrapper");
+  app.dom.linkWrapper = document.getElementById("link-wrapper");
 
   // preview links container
-  app.dom.previewLinksSection = document.getElementById("preview-links-section");
-
+  app.dom.previewLinksSection = document.getElementById(
+    "preview-links-section"
+  );
+ 
   // preview all links buttons
-  app.dom.overlayPreviewButtons = [...document.querySelectorAll(".overlay-preview-buttons")];
+  app.dom.overlayPreviewButtons = [
+    ...document.querySelectorAll(".overlay-preview-buttons")
+  ];
 
   // link name checkboxes
-  app.dom.linkNameCheckbox = [...document.querySelectorAll(".link-name-checkbox")];
+  app.dom.linkNameCheckbox = [
+    ...document.querySelectorAll(".link-name-checkbox")
+  ];
 
   // preview link wrappers
-  app.dom.previewLinkWrappers = [...document.querySelectorAll(".preview-link-wrapper")];
+  app.dom.previewLinkWrappers = [
+    ...document.querySelectorAll(".preview-link-wrapper")
+  ];
+
+  app.dom.creativeSearchInput = document.getElementById("creative-search-input");
 };
 
 const addListeners = () => {
   console.log("Adding event listeners.");
 
   app.dom.generateLinksButton.addEventListener("click", generateLinksHandler);
+  app.dom.creativeSearchInput.addEventListener("input", creativeSearchHandler);
 
-  for(let i = 0; i < app.dom.overlayPreviewButtons.length; i++) {
-    app.dom.overlayPreviewButtons[i].addEventListener("click", overlayPreviewButtonsHandler);
+  for (let i = 0; i < app.dom.overlayPreviewButtons.length; i++) {
+    app.dom.overlayPreviewButtons[i].addEventListener(
+      "click",
+      overlayPreviewButtonsHandler
+    );
   }
 
   // now check to see if there are an parameters in the url
@@ -118,6 +131,9 @@ const verifyParams = params => {
 
   // insert base url in to the base url input field
   app.dom.indexPathInput.value = base_url;
+
+  // clear textarea
+  app.dom.jsonNameInput.innerHTML = "";
 
   // loop through json names and place each name within the textarea
   for (let i = 0; i < jsons_split.length; i++) {
@@ -206,7 +222,7 @@ const formatLinkElements = (finalLinksArray, adSizesArray) => {
   console.log(adSizesArray);
 
   // empty then overlay wrapper to remove previous searches
-  app.dom.overlayWrapper.innerHTML = "";
+  app.dom.linkWrapper.innerHTML = "";
 
   // array for the buttons we will need for individual previews
   const previewButtonNames = [
@@ -242,6 +258,10 @@ const formatLinkElements = (finalLinksArray, adSizesArray) => {
       previewLinkWrapper.setAttribute("data-width", width);
       // add the height
       previewLinkWrapper.setAttribute("data-height", height);
+      // add nane
+      previewLinkWrapper.setAttribute("data-name", jsonName);
+      // add active dataset
+      previewLinkWrapper.setAttribute("data-active", "yes");
     }
 
     // create wrapper for the name wrapper and the buttons wrapper
@@ -328,7 +348,7 @@ const formatLinkElements = (finalLinksArray, adSizesArray) => {
   // loop through array
   for (let i = 0; i < previewLinkWrapperArray.length; i++) {
     // and finally append it to the wrapper for the preview links
-    app.dom.overlayWrapper.appendChild(previewLinkWrapperArray[i]);
+    app.dom.linkWrapper.appendChild(previewLinkWrapperArray[i]);
   }
 };
 
@@ -398,62 +418,64 @@ const singlePreviewButtonsHandler = e => {
           .then(function(e) {
             // get status variable
             const status = e.status;
-            
-            console.log("Status: " + status)
 
-              console.log("The preview link exists, now loading if the JSON also exists.");
+            console.log("Status: " + status);
 
-              // hide the preview creative button
-              target.style.display = "none";
-              // unhide the close creative button
-              closePreviewButton.style.display = "inline-block";
-              // set preview creative button to true
-              target.setAttribute("data-active", "true");
-              // set close button active dataset to true
-              closePreviewButton.setAttribute("data-active", "true");
-              // create a wrapper for the iframe
-              let creativeIframeWrapper = document.createElement("div");
-              // add a class
-              creativeIframeWrapper.classList.add("creative-iframe-wrapper");
-              // create an iframe for the creative
-              let creativeIframe = document.createElement("iframe");
-              // add the src
-              creativeIframe.setAttribute("src", link);
-              // add the width
-              creativeIframe.setAttribute("width", width);
-              // add the height
-              creativeIframe.setAttribute("height", height);
-              // add a class
-              creativeIframe.classList.add("creative-iframe");
-              // empty the creative preview wrapper
-              // creativePreviewWrapper.innerHTML = "";
-              // append inthe creative iframe wrapper
-              creativeIframeWrapper.appendChild(creativeIframe);
+            console.log(
+              "The preview link exists, now loading if the JSON also exists."
+            );
 
-              // create replay button
-              let replayCreativeButton = document.createElement("input");
-              // set type of input
-              replayCreativeButton.setAttribute("type", "button");
-              // set the value
-              replayCreativeButton.setAttribute("value", "Replay Creative");
-              // add a class
-              replayCreativeButton.classList.add(
-                "input-button",
-                "replay-creative-button"
-              );
-              // append to creative iframe wrapper
-              creativeIframeWrapper.appendChild(replayCreativeButton);
-              // append to creative preview wrapper
-              creativePreviewWrapper.appendChild(creativeIframeWrapper);
-              // set display property to flex
-              creativePreviewWrapper.style.display = "flex";
-              // add active class to name buttons wrapper
-              namesButtonsWrapper.classList.add("active");
-          });
+            // hide the preview creative button
+            target.style.display = "none";
+            // unhide the close creative button
+            closePreviewButton.style.display = "inline-block";
+            // set preview creative button to true
+            target.setAttribute("data-active", "true");
+            // set close button active dataset to true
+            closePreviewButton.setAttribute("data-active", "true");
+            // create a wrapper for the iframe
+            let creativeIframeWrapper = document.createElement("div");
+            // add a class
+            creativeIframeWrapper.classList.add("creative-iframe-wrapper");
+            // create an iframe for the creative
+            let creativeIframe = document.createElement("iframe");
+            // add the src
+            creativeIframe.setAttribute("src", link);
+            // add the width
+            creativeIframe.setAttribute("width", width);
+            // add the height
+            creativeIframe.setAttribute("height", height);
+            // add a class
+            creativeIframe.classList.add("creative-iframe");
+            // empty the creative preview wrapper
+            // creativePreviewWrapper.innerHTML = "";
+            // append inthe creative iframe wrapper
+            creativeIframeWrapper.appendChild(creativeIframe);
+
+            // create replay button
+            let replayCreativeButton = document.createElement("input");
+            // set type of input
+            replayCreativeButton.setAttribute("type", "button");
+            // set the value
+            replayCreativeButton.setAttribute("value", "Replay Creative");
+            // add a class
+            replayCreativeButton.classList.add(
+              "input-button",
+              "replay-creative-button"
+            );
+            // append to creative iframe wrapper
+            creativeIframeWrapper.appendChild(replayCreativeButton);
+            // append to creative preview wrapper
+            creativePreviewWrapper.appendChild(creativeIframeWrapper);
+            // set display property to flex
+            creativePreviewWrapper.style.display = "flex";
+            // add active class to name buttons wrapper
+            namesButtonsWrapper.classList.add("active");
+          })
           .catch(function(error) {
             // This is where you run code if the server returns any errors
             console.log("There's some sort of error.........");
-            console.log('Catch function response: ', error);
+            console.log("Catch function response: ", error);
           });
       }
 
@@ -491,8 +513,7 @@ const singlePreviewButtonsHandler = e => {
   }
 };
 
-const overlayPreviewButtonsHandler = (e) => {
-
+const overlayPreviewButtonsHandler = e => {
   // needed to get the checkboes as they were created dynamically
   setupDom();
 
@@ -501,64 +522,198 @@ const overlayPreviewButtonsHandler = (e) => {
   const targetAction = e.currentTarget.dataset.action;
 
   // switch statement to run code depending on whats been clicked
-  switch(targetAction) {
-
+  switch (targetAction) {
     // if select all
     case "select all":
-    
-    // loop through all checboxes and set to be checked
-    for(let i = 0; i < app.dom.linkNameCheckbox.length; i++) {
-      app.dom.linkNameCheckbox[i].checked = true;
-    }
+      // loop through all checkboxes and set to be checked
+      for (let i = 0; i < app.dom.linkNameCheckbox.length; i++) {
+        if(app.dom.linkNameCheckbox[i].parentNode.parentNode.parentNode.dataset.active === "yes") {
+          app.dom.linkNameCheckbox[i].checked = true;
+        }
+      }
 
-    break;
+      break;
 
     // if deselect all
     case "deselect all":
+      // loop through all checkboxes and set to be checked
+      for (let i = 0; i < app.dom.linkNameCheckbox.length; i++) {
+        app.dom.linkNameCheckbox[i].checked = false;
+      }
 
-    // loop through all checboxxes and set to be checked
-    for(let i = 0; i < app.dom.linkNameCheckbox.length; i++) {
-      app.dom.linkNameCheckbox[i].checked = false;
-    }
-
-    break;
+      break;
 
     // if open selected
     case "open selected":
-
       // confirm if user wants to open all or not
-      const confirmOpenSelected = confirm("This will open all of the selected links in a new tab. Are you sure?");
+      const confirmOpenSelected = confirm(
+        "This will open all of the selected links in a new tab. Are you sure?"
+      );
 
       // if they say yes (click ok)..
       if (confirmOpenSelected) {
-
         // loop thtrough preview link wrappers
-        for(let i = 0; i < app.dom.previewLinkWrappers.length; i++) {
-          // get the checboxes for each wrapper
-          const previewLinkWrapperCheckboxes = app.dom.previewLinkWrappers[i].childNodes[0].childNodes[0].childNodes[0];
+        for (let i = 0; i < app.dom.previewLinkWrappers.length; i++) {
+          // get the checkboxes for each wrapper
+          const previewLinkWrapperCheckboxes =
+            app.dom.previewLinkWrappers[i].childNodes[0].childNodes[0]
+              .childNodes[0];
           // if its been checked
-          if(previewLinkWrapperCheckboxes.checked) {
+          if (previewLinkWrapperCheckboxes.checked) {
             // get the link dataset
             const link = app.dom.previewLinkWrappers[i].dataset.link;
             // open the link
             window.open(link);
           }
         }
-    }
+      }
 
-
-
-    break;
+      break;
 
     // if preview selected
     case "preview selected":
+      // confirm if user wants to preview all or not
+      const confirmPreviewSelected = confirm(
+        "This will open all of the selected links in a preview window. Are you sure?"
+      );
 
-    console.log(targetAction)
+      // if they say yes (click ok)..
+      if (confirmPreviewSelected) {
+        // loop thtrough preview link wrappers
+        for (let i = 0; i < app.dom.previewLinkWrappers.length; i++) {
+          // get the checkboxes for each wrapper
+          const previewLinkWrapperCheckboxes =
+            app.dom.previewLinkWrappers[i].childNodes[0].childNodes[0]
+              .childNodes[0];
+          // if its been checked
+          if (previewLinkWrapperCheckboxes.checked) {
+            // get the link, width and height from dataset
+            const link = app.dom.previewLinkWrappers[i].dataset.link;
+            const width = app.dom.previewLinkWrappers[i].dataset.width;
+            const height = app.dom.previewLinkWrappers[i].dataset.height;
 
-    break;
+            // using fetch to check if url works
+            fetch(link) // Call the fetch function passing the url of the API as a parameter
+              .then(function(e) {
+                // get status variable
+                const status = e.status;
 
+                console.log("Status: " + status);
+
+                console.log(
+                  "The preview link exists, now loading if the JSON also exists."
+                );
+
+                // open/close creative buttons
+                const openCreativePreview =
+                  app.dom.previewLinkWrappers[i].childNodes[0].childNodes[1]
+                    .childNodes[2];
+                const closeCreativePreview =
+                  app.dom.previewLinkWrappers[i].childNodes[0].childNodes[1]
+                    .childNodes[3];
+
+                // creative preview wrapper
+                const creativePreviewWrapper =
+                  app.dom.previewLinkWrappers[i].childNodes[1];
+
+                // hide the preview creative button
+                openCreativePreview.style.display = "none";
+                // unhide the close creative button
+                closeCreativePreview.style.display = "inline-block";
+                // set preview creative button to true
+                openCreativePreview.setAttribute("data-active", "true");
+                // set close button active dataset to true
+                closeCreativePreview.setAttribute("data-active", "true");
+                // create a wrapper for the iframe
+                let creativeIframeWrapper = document.createElement("div");
+                // add a class
+                creativeIframeWrapper.classList.add("creative-iframe-wrapper");
+                // create an iframe for the creative
+                let creativeIframe = document.createElement("iframe");
+                // add the src
+                creativeIframe.setAttribute("src", link);
+                // add the width
+                creativeIframe.setAttribute("width", width);
+                // add the height
+                creativeIframe.setAttribute("height", height);
+                // add a class
+                creativeIframe.classList.add("creative-iframe");
+                // empty the creative preview wrapper
+                creativePreviewWrapper.innerHTML = "";
+                // append inthe creative iframe wrapper
+                creativeIframeWrapper.appendChild(creativeIframe);
+
+                // create replay button
+                let replayCreativeButton = document.createElement("input");
+                // set type of input
+                replayCreativeButton.setAttribute("type", "button");
+                // set the value
+                replayCreativeButton.setAttribute("value", "Replay Creative");
+                // add a class
+                replayCreativeButton.classList.add(
+                  "input-button",
+                  "replay-creative-button"
+                );
+                // append to creative iframe wrapper
+                creativeIframeWrapper.appendChild(replayCreativeButton);
+                // append to creative preview wrapper
+                creativePreviewWrapper.appendChild(creativeIframeWrapper);
+                // set display property to flex
+                creativePreviewWrapper.style.display = "flex";
+                // add active class to name buttons wrapper
+                app.dom.previewLinkWrappers[i].childNodes[0].classList.add("active");
+              })
+              .catch(function(error) {
+                // This is where you run code if the server returns any errors
+                console.log("There's some sort of error.........");
+                console.log("Catch function response: ", error);
+              });
+          }
+        }
+      }
+
+      break;
   }
+};
 
+const creativeSearchHandler = (e) => {
+
+  setupDom();
+
+    console.log("Searching for JSONs...");
+
+    // get value of search box
+    const searchTerm = e.target.value;
+
+    // loop through all of the checkboxes and set them all to false to reset
+    for(let i = 0; i < app.dom.linkNameCheckbox.length; i++) {
+      app.dom.linkNameCheckbox[i].checked = false;
+    }
+
+    // loop through preview wrappers
+    for(let i = 0; i < app.dom.previewLinkWrappers.length; i++) {
+
+      // get the name of the creative
+      const creativeName = app.dom.previewLinkWrappers[i].dataset.name
+
+      // if it matches/doesnt match
+      if(creativeName.indexOf(searchTerm) > -1) {
+        console.log("Matching: \n " + creativeName);
+        
+        // add display block so wrapper appears in search results
+        app.dom.previewLinkWrappers[i].style.display = "block";
+        // set data active to yes
+        app.dom.previewLinkWrappers[i].dataset.active = "yes";
+
+      } else {
+      console.log("Not Matching: \n " + creativeName);
+      // add display none to hide results that don't match
+      app.dom.previewLinkWrappers[i].style.display = "none";
+      // set data active to no
+      app.dom.previewLinkWrappers[i].dataset.active = "no";
+      }
+
+    }
 
 };
 
