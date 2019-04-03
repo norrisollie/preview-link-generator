@@ -62,6 +62,16 @@ const setupDom = () => {
   ];
 
   app.dom.creativeSearchInput = document.getElementById("creative-search-input");
+
+  // close overlay button
+  app.dom.closeOverlayButton = document.getElementById("close-overlay-button");
+
+  // overlay container
+  app.dom.overlayContainerWrapper = document.getElementById("overlay-container-wrapper");
+
+  // preview wrapper in overlay
+  app.dom.overlayPreviewWrapper = document.getElementById("overlay-preview-wrapper");
+
 };
 
 const addListeners = () => {
@@ -69,6 +79,7 @@ const addListeners = () => {
 
   app.dom.generateLinksButton.addEventListener("click", generateLinksHandler);
   app.dom.creativeSearchInput.addEventListener("input", creativeSearchHandler);
+  app.dom.closeOverlayButton.addEventListener("click", closeOverlayHandler)
 
   for (let i = 0; i < app.dom.overlayPreviewButtons.length; i++) {
     app.dom.overlayPreviewButtons[i].addEventListener(
@@ -350,6 +361,11 @@ const formatLinkElements = (finalLinksArray, adSizesArray) => {
     // and finally append it to the wrapper for the preview links
     app.dom.linkWrapper.appendChild(previewLinkWrapperArray[i]);
   }
+
+  app.dom.overlayContainerWrapper.style.opacity = 1;
+  app.dom.overlayContainerWrapper.style.pointerEvents = "all";
+
+
 };
 
 const singlePreviewButtonsHandler = e => {
@@ -543,6 +559,29 @@ const overlayPreviewButtonsHandler = e => {
 
       break;
 
+      case "copy link":
+      console.log("Action is: " + action);
+
+      // show prompt for user to see link has been copied to clipboard
+      app.dom.copyTextareaWrapper.style.opacity = 1;
+      // hide message after 3 seconds
+      let messageTimeout = setTimeout(function() {
+        app.dom.copyTextareaWrapper.style.opacity = 0;
+      }, 3000);
+
+      // clear anything from copy links textarea
+      app.dom.copyLinkTextarea.innerHTML = "";
+      // insert the link in the textarea
+
+      
+      app.dom.copyLinkTextarea.innerHTML = link;
+      // select text in the copy link textarea
+      app.dom.copyLinkTextarea.select();
+      // copy selected text to copy to clipboard
+      document.execCommand("copy");
+
+      break;
+
     // if open selected
     case "open selected":
       // confirm if user wants to open all or not
@@ -716,5 +755,17 @@ const creativeSearchHandler = (e) => {
     }
 
 };
+
+const closeOverlayHandler = () => {
+
+  console.log("click");
+
+  app.dom.overlayContainerWrapper.style.opacity = 0;
+  app.dom.overlayContainerWrapper.style.pointerEvents = "none";
+
+  // app.dom.overlayPreviewWrapper.style.opacity = 0;
+  // app.dom.overlayPreviewWrapper.style.pointerEvents = "none";
+
+}
 
 window.onload = init;
