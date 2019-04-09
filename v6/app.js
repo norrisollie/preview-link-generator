@@ -45,7 +45,7 @@ const setupDom = () => {
   app.dom.previewLinksSection = document.getElementById(
     "preview-links-section"
   );
- 
+
   // preview all links buttons
   app.dom.overlayPreviewButtons = [
     ...document.querySelectorAll(".overlay-preview-buttons")
@@ -61,17 +61,22 @@ const setupDom = () => {
     ...document.querySelectorAll(".preview-link-wrapper")
   ];
 
-  app.dom.creativeSearchInput = document.getElementById("creative-search-input");
+  app.dom.creativeSearchInput = document.getElementById(
+    "creative-search-input"
+  );
 
   // close overlay button
   app.dom.closeOverlayButton = document.getElementById("close-overlay-button");
 
   // overlay container
-  app.dom.overlayContainerWrapper = document.getElementById("overlay-container-wrapper");
+  app.dom.overlayContainerWrapper = document.getElementById(
+    "overlay-container-wrapper"
+  );
 
   // preview wrapper in overlay
-  app.dom.overlayPreviewWrapper = document.getElementById("overlay-preview-wrapper");
-
+  app.dom.overlayPreviewWrapper = document.getElementById(
+    "overlay-preview-wrapper"
+  );
 };
 
 const addListeners = () => {
@@ -79,7 +84,7 @@ const addListeners = () => {
 
   app.dom.generateLinksButton.addEventListener("click", generateLinksHandler);
   app.dom.creativeSearchInput.addEventListener("input", creativeSearchHandler);
-  app.dom.closeOverlayButton.addEventListener("click", closeOverlayHandler)
+  app.dom.closeOverlayButton.addEventListener("click", closeOverlayHandler);
 
   for (let i = 0; i < app.dom.overlayPreviewButtons.length; i++) {
     app.dom.overlayPreviewButtons[i].addEventListener(
@@ -364,8 +369,6 @@ const formatLinkElements = (finalLinksArray, adSizesArray) => {
 
   app.dom.overlayContainerWrapper.style.opacity = 1;
   app.dom.overlayContainerWrapper.style.pointerEvents = "all";
-
-
 };
 
 const singlePreviewButtonsHandler = e => {
@@ -405,12 +408,7 @@ const singlePreviewButtonsHandler = e => {
     case "copy link":
       console.log("Action is: " + action);
 
-      // show prompt for user to see link has been copied to clipboard
-      app.dom.copyTextareaWrapper.style.opacity = 1;
-      // hide message after 3 seconds
-      let messageTimeout = setTimeout(function() {
-        app.dom.copyTextareaWrapper.style.opacity = 0;
-      }, 3000);
+      showCopyPrompt();
 
       // clear anything from copy links textarea
       app.dom.copyLinkTextarea.innerHTML = "";
@@ -543,7 +541,10 @@ const overlayPreviewButtonsHandler = e => {
     case "select all":
       // loop through all checkboxes and set to be checked
       for (let i = 0; i < app.dom.linkNameCheckbox.length; i++) {
-        if(app.dom.linkNameCheckbox[i].parentNode.parentNode.parentNode.dataset.active === "yes") {
+        if (
+          app.dom.linkNameCheckbox[i].parentNode.parentNode.parentNode.dataset
+            .active === "yes"
+        ) {
           app.dom.linkNameCheckbox[i].checked = true;
         }
       }
@@ -559,21 +560,15 @@ const overlayPreviewButtonsHandler = e => {
 
       break;
 
-      case "copy link":
+    case "copy link":
       console.log("Action is: " + action);
 
-      // show prompt for user to see link has been copied to clipboard
-      app.dom.copyTextareaWrapper.style.opacity = 1;
-      // hide message after 3 seconds
-      let messageTimeout = setTimeout(function() {
-        app.dom.copyTextareaWrapper.style.opacity = 0;
-      }, 3000);
+      showCopyPrompt();
 
       // clear anything from copy links textarea
       app.dom.copyLinkTextarea.innerHTML = "";
       // insert the link in the textarea
 
-      
       app.dom.copyLinkTextarea.innerHTML = link;
       // select text in the copy link textarea
       app.dom.copyLinkTextarea.select();
@@ -700,7 +695,9 @@ const overlayPreviewButtonsHandler = e => {
                 // set display property to flex
                 creativePreviewWrapper.style.display = "flex";
                 // add active class to name buttons wrapper
-                app.dom.previewLinkWrappers[i].childNodes[0].classList.add("active");
+                app.dom.previewLinkWrappers[i].childNodes[0].classList.add(
+                  "active"
+                );
               })
               .catch(function(error) {
                 // This is where you run code if the server returns any errors
@@ -710,62 +707,91 @@ const overlayPreviewButtonsHandler = e => {
           }
         }
       }
+      break;
+
+    case "copy links":
+
+      // empty checkbox
+      app.dom.copyLinkTextarea.innerHTML = "";
+
+      // loop through all checked preview link wrappers
+      for (var i = 0; i < app.dom.previewLinkWrappers.length; i++) {
+        //  declare checkbox
+        const linkNameCheckbox =
+          app.dom.previewLinkWrappers[i].childNodes[0].childNodes[0]
+            .childNodes[0];
+        // get link
+        const link = app.dom.previewLinkWrappers[i].dataset.link;
+
+        showCopyPrompt();
+
+        // if checked
+        if (linkNameCheckbox.checked === true) {
+          // add each link to textarea
+          app.dom.copyLinkTextarea.innerHTML += link + "\n";
+
+          // select text in the copy link textarea
+          app.dom.copyLinkTextarea.select();
+          // copy selected text to copy to clipboard
+          document.execCommand("copy");
+        }
+        
+      }
 
       break;
   }
 };
 
-const creativeSearchHandler = (e) => {
-
+const creativeSearchHandler = e => {
   setupDom();
 
-    console.log("Searching for JSONs...");
+  console.log("Searching for JSONs...");
 
-    // get value of search box
-    const searchTerm = e.target.value;
+  // get value of search box
+  const searchTerm = e.target.value;
 
-    // loop through all of the checkboxes and set them all to false to reset
-    for(let i = 0; i < app.dom.linkNameCheckbox.length; i++) {
-      app.dom.linkNameCheckbox[i].checked = false;
-    }
+  // loop through all of the checkboxes and set them all to false to reset
+  for (let i = 0; i < app.dom.linkNameCheckbox.length; i++) {
+    app.dom.linkNameCheckbox[i].checked = false;
+  }
 
-    // loop through preview wrappers
-    for(let i = 0; i < app.dom.previewLinkWrappers.length; i++) {
+  // loop through preview wrappers
+  for (let i = 0; i < app.dom.previewLinkWrappers.length; i++) {
+    // get the name of the creative
+    const creativeName = app.dom.previewLinkWrappers[i].dataset.name;
 
-      // get the name of the creative
-      const creativeName = app.dom.previewLinkWrappers[i].dataset.name
+    // if it matches/doesnt match
+    if (creativeName.indexOf(searchTerm) > -1) {
+      console.log("Matching: \n " + creativeName);
 
-      // if it matches/doesnt match
-      if(creativeName.indexOf(searchTerm) > -1) {
-        console.log("Matching: \n " + creativeName);
-        
-        // add display block so wrapper appears in search results
-        app.dom.previewLinkWrappers[i].style.display = "block";
-        // set data active to yes
-        app.dom.previewLinkWrappers[i].dataset.active = "yes";
-
-      } else {
+      // add display block so wrapper appears in search results
+      app.dom.previewLinkWrappers[i].style.display = "block";
+      // set data active to yes
+      app.dom.previewLinkWrappers[i].dataset.active = "yes";
+    } else {
       console.log("Not Matching: \n " + creativeName);
       // add display none to hide results that don't match
       app.dom.previewLinkWrappers[i].style.display = "none";
       // set data active to no
       app.dom.previewLinkWrappers[i].dataset.active = "no";
-      }
-
     }
-
+  }
 };
 
 const closeOverlayHandler = () => {
 
-  console.log("click");
-
   app.dom.overlayContainerWrapper.style.opacity = 0;
   app.dom.overlayContainerWrapper.style.pointerEvents = "none";
 
-  // app.dom.overlayPreviewWrapper.style.opacity = 0;
-  // app.dom.overlayPreviewWrapper.style.pointerEvents = "none";
+};
 
-}
+const showCopyPrompt = () => {
+  // show prompt for user to see link has been copied to clipboard
+  app.dom.copyTextareaWrapper.style.opacity = 1;
+  // hide message after 3 seconds
+  let messageTimeout = setTimeout(function() {
+    app.dom.copyTextareaWrapper.style.opacity = 0;
+  }, 3000);
+};
 
 window.onload = init;
