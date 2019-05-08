@@ -485,6 +485,8 @@ const singlePreviewButtonsHandler = e => {
             creativePreviewWrapper.style.display = "flex";
             // add active class to name buttons wrapper
             namesButtonsWrapper.classList.add("active");
+            // add event listener
+            replayCreativeButton.addEventListener("click", replayAdHandler);
           })
           .catch(function(error) {
             // This is where you run code if the server returns any errors
@@ -698,6 +700,8 @@ const overlayPreviewButtonsHandler = e => {
                 app.dom.previewLinkWrappers[i].childNodes[0].classList.add(
                   "active"
                 );
+                            // add event listener
+            replayCreativeButton.addEventListener("click", replayAdHandler);
               })
               .catch(function(error) {
                 // This is where you run code if the server returns any errors
@@ -793,5 +797,12 @@ const showCopyPrompt = () => {
     app.dom.copyTextareaWrapper.style.opacity = 0;
   }, 3000);
 };
+
+const replayAdHandler = (e) => {
+  // find the iframe
+  const targetIframe = e.target.parentNode.childNodes[0];
+  // reload
+  targetIframe.src += "";
+}
 
 window.onload = init;
