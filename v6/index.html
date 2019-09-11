@@ -9,16 +9,19 @@
   </head>
   <body>
     <div class="container" id="fixed-container">
-      
       <div class="wrapper" id="form-wrapper">
-
         <div class="section">
           <div class="inner-section">
             <div class="section-title">Index File Path</div>
           </div>
 
           <div class="inner-section">
-            <input class="input-text" id="index-path-input" type="text" value="https://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/archived/summer-sale/160x600/index.html">
+            <input
+              class="input-text"
+              id="index-path-input"
+              type="text"
+              value="https://m5-preview.s3.amazonaws.com/quickbooks/1711-quickbooks-dynamic/archived/summer-sale/160x600/index.html"
+            />
           </div>
         </div>
 
@@ -27,60 +30,185 @@
             <div class="section-title">JSON Names</div>
           </div>
           <div class="inner-section">
-                <textarea class="input-textarea" id="json-names-input" rows="5" placeholder="160x600-summer-sale&#10;160x600-summer-sale-extended">160x600-summer-sale&#10;160x600-summer-sale-extended&#10;160x600-test-json</textarea>
-              </div>
-        </div>
-
-        <div class="section">
-
-            <div class="inner-section">
-              <div class="section-title">Ad Sizes</div>
-            </div>
-  
-            <div class="inner-section is-wrapped">
-                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="120x600"> 120x600</label></div>
-                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="160x600"> 160x600</label></div>
-                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="300x250"> 300x250</label></div>
-                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="320x50"> 320x50</label></div>
-                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="300x600"> 300x600</label></div>
-                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="728x90"> 728x90</label></div>
-                  <div class="size-checkbox-wrapper"><label class="size-label-wrapper"><input class="size-input-checkbox" type="checkbox" data-ad-size="970x250"> 970x250</label></div>
-                </div>
-
+            <textarea
+              class="input-textarea"
+              id="json-names-input"
+              rows="5"
+              placeholder="160x600-summer-sale&#10;160x600-summer-sale-extended"
+            >
+160x600-summer-sale&#10;160x600-summer-sale-extended&#10;160x600-test-json</textarea
+            >
           </div>
+        </div>
 
         <div class="section">
           <div class="inner-section">
-            <input type="button" class="input-button primary" id="generate-links-button" value="Generate Links">
+            <div class="section-title">Ad Sizes</div>
+          </div>
+
+          <div class="inner-section is-wrapped">
+            <div class="size-checkbox-wrapper">
+              <label class="size-label-wrapper"
+                ><input
+                  class="size-input-checkbox"
+                  type="checkbox"
+                  data-ad-size="120x600"
+                />
+                120x600</label
+              >
+            </div>
+            <div class="size-checkbox-wrapper">
+              <label class="size-label-wrapper"
+                ><input
+                  class="size-input-checkbox"
+                  type="checkbox"
+                  data-ad-size="160x600"
+                />
+                160x600</label
+              >
+            </div>
+            <div class="size-checkbox-wrapper">
+              <label class="size-label-wrapper"
+                ><input
+                  class="size-input-checkbox"
+                  type="checkbox"
+                  data-ad-size="300x250"
+                />
+                300x250</label
+              >
+            </div>
+            <div class="size-checkbox-wrapper">
+              <label class="size-label-wrapper"
+                ><input
+                  class="size-input-checkbox"
+                  type="checkbox"
+                  data-ad-size="320x50"
+                />
+                320x50</label
+              >
+            </div>
+            <div class="size-checkbox-wrapper">
+              <label class="size-label-wrapper"
+                ><input
+                  class="size-input-checkbox"
+                  type="checkbox"
+                  data-ad-size="320x480"
+                />
+                320x480</label
+              >
+            </div>
+            <div class="size-checkbox-wrapper">
+              <label class="size-label-wrapper"
+                ><input
+                  class="size-input-checkbox"
+                  type="checkbox"
+                  data-ad-size="300x50"
+                />
+                300x50</label
+              >
+            </div>
+            <div class="size-checkbox-wrapper">
+              <label class="size-label-wrapper"
+                ><input
+                  class="size-input-checkbox"
+                  type="checkbox"
+                  data-ad-size="300x600"
+                />
+                300x600</label
+              >
+            </div>
+            <div class="size-checkbox-wrapper">
+              <label class="size-label-wrapper"
+                ><input
+                  class="size-input-checkbox"
+                  type="checkbox"
+                  data-ad-size="728x90"
+                />
+                728x90</label
+              >
+            </div>
+            <div class="size-checkbox-wrapper">
+              <label class="size-label-wrapper"
+                ><input
+                  class="size-input-checkbox"
+                  type="checkbox"
+                  data-ad-size="970x250"
+                />
+                970x250</label
+              >
+            </div>
           </div>
         </div>
-        
+
+        <div class="section">
+          <div class="inner-section">
+            <input
+              type="button"
+              class="input-button primary"
+              id="generate-links-button"
+              value="Generate Links"
+            />
+          </div>
+        </div>
       </div>
       <div class="container" id="overlay-container-wrapper">
-      <div class="wrapper" id="overlay-preview-wrapper">
-        <div class="section" id="close-section">
-          <div class="inner-section">
-              <div id="close-overlay-button"></div>
-          </div>
-        </div>
-        <div class="section">
+        <div class="wrapper" id="overlay-preview-wrapper">
+          <div class="section" id="close-section">
             <div class="inner-section">
-              
-              <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="select all" value="Select All">
-              <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="deselect all" value="Deselect All">
-              <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="copy links" value="Copy Links">
-              <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="open selected" value="Open Selected">
-              <input type="button" class="input-button dark overlay-preview-buttons" id="" data-action="preview selected" value="Preview Selected">
-              <input type="text" class="input-text" id="creative-search-input" placeholder="Search for a variant">
-
+              <div id="close-overlay-button"></div>
+            </div>
+          </div>
+          <div class="section">
+            <div class="inner-section">
+              <input
+                type="button"
+                class="input-button dark overlay-preview-buttons"
+                id=""
+                data-action="select all"
+                value="Select All"
+              />
+              <input
+                type="button"
+                class="input-button dark overlay-preview-buttons"
+                id=""
+                data-action="deselect all"
+                value="Deselect All"
+              />
+              <input
+                type="button"
+                class="input-button dark overlay-preview-buttons"
+                id=""
+                data-action="copy links"
+                value="Copy Links"
+              />
+              <input
+                type="button"
+                class="input-button dark overlay-preview-buttons"
+                id=""
+                data-action="open selected"
+                value="Open Selected"
+              />
+              <input
+                type="button"
+                class="input-button dark overlay-preview-buttons"
+                id=""
+                data-action="preview selected"
+                value="Preview Selected"
+              />
+              <input
+                type="text"
+                class="input-text"
+                id="creative-search-input"
+                placeholder="Search for a variant"
+              />
             </div>
           </div>
           <div class="section">
             <div class="inner-section is-column" id="link-wrapper"></div>
           </div>
-          </div>
+        </div>
+      </div>
     </div>
-  </div>
     <div id="copy-textarea-wrapper">
       <div class="section" id="copy-link-section">
         <div class="inner-section">
@@ -88,13 +216,12 @@
         </div>
       </div>
       <div class="section">
-          <div class="inner-section">
-            <textarea class="input-textarea" id="copy-link-textarea"></textarea>
-          </div>
+        <div class="inner-section">
+          <textarea class="input-textarea" id="copy-link-textarea"></textarea>
         </div>
+      </div>
     </div>
 
-        <script src="app.js"></script>
-
+    <script src="app.js"></script>
   </body>
 </html>
